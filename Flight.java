@@ -7,12 +7,12 @@ public class Flight
     private int totalSeat;
     private int price;
 
-    Flight(String flightId,String airline,int totalAvailableSeat,int totalSeat,int price)
+    Flight(String flightId,String airline,int totalSeat,int price)
     {
         this.flightId = flightId;
         this.airline = airline;
-        this.totalAvailableSeat = totalAvailableSeat;
         this.totalSeat = totalSeat;
+        this.totalAvailableSeat = totalSeat - 0;
         this.price = price;
     }
     
