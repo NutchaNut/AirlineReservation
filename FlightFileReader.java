@@ -1,5 +1,6 @@
 public class FlightFileReader extends TextFileReader{
 
+    
     public Flight readFlight()
     {
         Flight flight = null;
