@@ -1,25 +1,49 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.List;
 
 public class ReservationManager{
 
     private ArrayList<Reservation> allReservations;
 
-    // public AllReservation searchById(){
-    //     //AllReservation reservation = new AllReservation(reservationId, flight, passengers, price);
+     public Reservation searchById(String reservationId){
+        Iterator iter = allReservations.iterator();
+        while (iter.hasNext()) {
+            Reservation object = iter.next();
+            if(object.getReservationId().equals(reservationId)){
+                return object;
+            }
+        }
+        return null;
         
-        
-    // }
+    }
 
     public boolean cancelReservation(){
 
+        Iterator<E> iter = allReservations.iterator();
+        while (iter.hasNext()) {
+            Reservation object = iter.next();
+            if(object.getReservationId().equals(reservationId)){
+                iter.remove();
+                System.out.println("cancel success");
+                return true;
+            }
+        }
+        System.out.println("Not Found Reservation");
         return false;
     }
 
-    public boolean showReservation(){
-
-        return false;
+    public boolean showReservation(String reservationId){
+        Reservation reservation = searchById(reservationId);
+        if(reservation != null){
+            reservation.printIniterary();
+            return true;
+        }else{
+            System.out.println("Not Found Reservation");
+            return false;
+        }
     }
 
     public boolean saveReservation(Reservation reservation){

@@ -91,4 +91,8 @@ public class Reservation{
 
 
     }
+
+    public String getReservationId(){
+        return reservationId;
+    }
 }
