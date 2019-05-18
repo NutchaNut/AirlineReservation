@@ -6,6 +6,7 @@ public class ScheduleFlight extends TextFileReader {
     private ArrayList<String> day = new ArrayList<String>();
     private Date departureTime = new Date();
     private Date arrivalTime = new Date();
+    
 
     ScheduleFlight(String flightId, ArrayList<String> day, Date departureTime, Date arrivalTime)
     {
