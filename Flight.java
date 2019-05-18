@@ -6,14 +6,18 @@ public class Flight
     private int totalAvailableSeat;
     private int totalSeat;
     private int price;
+    private String origin;
+    private String destination;
 
-    Flight(String flightId,String airline,int totalSeat,int price)
+    Flight(String flightId,String airline,int totalSeat,int price,String origin,String destination)
     {
         this.flightId = flightId;
         this.airline = airline;
         this.totalSeat = totalSeat;
         this.totalAvailableSeat = totalSeat - 0;
         this.price = price;
+        this.origin = origin;
+        this.destination = destination;
     }
     
     public String getFlightId()
@@ -28,7 +32,7 @@ public class Flight
 
     public int getTotalAvailableSeat()
     {
-        return this.totalAvailableSeat;
+        return totalAvailableSeat;
     }
 
     public int getTotalSeat()
@@ -39,6 +43,16 @@ public class Flight
     public int getPrice()
     {
         return this.price;
+    }
+
+    public String getOrigin()
+    {
+        return this.origin;
+    }
+
+    public String getDestination()
+    {
+        return this.destination;
     }
 
     public void setTotalAvailableSeat(int numberPassenger)
