@@ -6,10 +6,10 @@ public class OperateFlight
     private Date itineraryDate = new Date();
     private String originLocation;
     private String destinationLocation;
-    private String transitLocation;
+    private Flight transitFlight;
     private boolean checkTransit;
 
-    OperateFlight(Flight flight,Date date,String origin,String destination,String transit,boolean checkTransit)
+    OperateFlight(Flight flight,Date date,String origin,String destination,Flight transit,boolean checkTransit)
     {
         
         if(checkTransit == false)
@@ -18,7 +18,7 @@ public class OperateFlight
             this.itineraryDate = date;
             this.originLocation = origin;
             this.destinationLocation = destination;
-            this.transitLocation = null;
+            this.transitFlight = null;
         }
         else
         {
@@ -26,7 +26,7 @@ public class OperateFlight
             this.itineraryDate = date;
             this.originLocation = origin;
             this.destinationLocation = destination;
-            this.transitLocation = transit;
+            this.transitFlight = transit;
 
         }
     }
@@ -51,16 +51,9 @@ public class OperateFlight
         return this.destinationLocation;
     }
 
-    public String getTransitLocation()
+    public Flight getTransitFlight()
     {
-        if(this.checkTransit == true)
-        {
-            return this.transitLocation;
-        }
-        else
-        {
-            return "This itinerary hasn't to have a transit flight";
-        }
+       return this.transitFlight;
     }
     public boolean isTransit()
     {
