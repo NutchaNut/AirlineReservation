@@ -11,7 +11,7 @@ public class ReservationManager{
      public Reservation searchById(String reservationId){
         Iterator iter = allReservations.iterator();
         while (iter.hasNext()) {
-            Reservation object = iter.next();
+            Reservation object = (Reservation)iter.next();
             if(object.getReservationId().equals(reservationId)){
                 return object;
             }
@@ -20,12 +20,13 @@ public class ReservationManager{
         
     }
 
-    public boolean cancelReservation(){
+    public boolean cancelReservation(String reservationId){
 
-        Iterator<E> iter = allReservations.iterator();
+        Iterator iter = allReservations.iterator();
         while (iter.hasNext()) {
-            Reservation object = iter.next();
-            if(object.getReservationId().equals(reservationId)){
+            Reservation object = (Reservation)iter.next();
+            String id = object.getReservationId();
+            if(id.equals(reservationId)){
                 iter.remove();
                 System.out.println("cancel success");
                 return true;
@@ -57,7 +58,8 @@ public class ReservationManager{
 
     public void createReservation(OperateFlight flight, Date date){
 
-        String reservationId = UUID.randomUUID().toString();
+        String reservationId = generateId();
+        System.out.println(reservationId);
 
         Scanner in = new Scanner(System.in);
         int noPassenger;
@@ -83,5 +85,18 @@ public class ReservationManager{
 
     }
 
+    String generateId(){
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";
+
+        StringBuilder sb = new StringBuilder(6); 
+  
+        for (int i = 0; i < 6; i++) { 
+
+            int index = (int)(AlphaNumericString.length() * Math.random()); 
+  
+            sb.append(AlphaNumericString .charAt(index)); 
+        } 
+        return sb.toString();
+    }
     
 }

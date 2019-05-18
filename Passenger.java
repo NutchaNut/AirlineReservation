@@ -5,12 +5,12 @@ public class Passenger{
     private String name;
     private String lastName;
     private String passportId;
-    private Date birthday;
+    private String birthday;
     private String gender;
     private String phoneNumber;
     private String email;
 
-    Passenger(String name, String lastName,String passportId, Date birthday, String gender, String phoneNumber, String email){
+    Passenger(String name, String lastName,String passportId, String birthday, String gender, String phoneNumber, String email){
         this.name = name;
         this.lastName = lastName;
         this.passportId = passportId;

@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.Iterator;
 
 public class Reservation{
 
@@ -21,7 +22,7 @@ public class Reservation{
     //     this.numberOfPassenger = noPassenger;
     // }
 
-    Reservation(String reservationId,OperateFlight flight, Date date, int noPassenger){
+    Reservation(String reservationId,OperateFlight flight, int noPassenger){
         this.reservationId = reservationId;
         this.selectedFlight = flight;
         //this.date = date;
@@ -86,7 +87,8 @@ public class Reservation{
         System.out.println("Passenger : ");
         Iterator iter = passengers.iterator();
         while (iter.hasNext()) {
-            iter.next().tostring();
+            Passenger object = (Passenger)iter.next();
+            object.toString();
         }
 
 
