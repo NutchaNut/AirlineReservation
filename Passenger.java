@@ -19,5 +19,15 @@ public class Passenger{
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
+
+    public String toString(){
+        return "Name : " + name + '\'' +
+        "Lastname : " + lastName + '\'' +
+        "Passport Id : " + passportId + '\'' +
+        "Birthday : " + birthday + '\'' +
+        "Gender : " + gender + '\'' +
+        "Phone Number : " + phoneNumber  + '\'' +
+        "Email : " + email;
+    }
     
 }
