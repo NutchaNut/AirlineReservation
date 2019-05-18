@@ -9,6 +9,7 @@ public class ScheduleFlight extends TextFileReader {
     private ArrayList<String> day;
     private Date departureTime = new Date();
     private Date arrivalTime = new Date();
+    
 
     public ScheduleFlight readSchedule() {
         ScheduleFlight schedule = null;

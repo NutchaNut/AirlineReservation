@@ -42,7 +42,7 @@ public class FlightFileReader extends TextFileReader
 
         // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         if (line != null) {
-            String fields[] = line.split(" "); // split each field by space
+            String fields[] = line.split(","); // split each field by space
 
             flightId = fields[0];
 

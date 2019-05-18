@@ -3,16 +3,32 @@ import java.util.Date;
 public class OperateFlight
 {
     private Flight flight = null;
-    private Date initeraryDate = new Date();
+    private Date itineraryDate = new Date();
     private String originLocation;
     private String destinationLocation;
+    private String transitLocation;
+    private boolean checkTransit;
 
-    OperateFlight(Flight flight,Date date,String origin,String destination)
+    OperateFlight(Flight flight,Date date,String origin,String destination,String transit,boolean checkTransit)
     {
-        this.flight = flight;
-        this.initeraryDate = date;
-        this.originLocation = origin;
-        this.destinationLocation = destination;
+        
+        if(checkTransit == false)
+        {
+            this.flight = flight;
+            this.itineraryDate = date;
+            this.originLocation = origin;
+            this.destinationLocation = destination;
+            this.transitLocation = null;
+        }
+        else
+        {
+            this.flight = flight;
+            this.itineraryDate = date;
+            this.originLocation = origin;
+            this.destinationLocation = destination;
+            this.transitLocation = transit;
+
+        }
     }
 
     public Flight getFlight()
@@ -20,9 +36,9 @@ public class OperateFlight
         return this.flight;
     }
 
-    public Date getIniteraryDate()
+    public Date getItineraryDate()
     {
-        return this.initeraryDate;
+        return this.itineraryDate;
     }
 
     public String getOriginLocation()
@@ -33,6 +49,22 @@ public class OperateFlight
     public String getDestinationLocation()
     {
         return this.destinationLocation;
+    }
+
+    public String getTransitLocation()
+    {
+        if(this.checkTransit == true)
+        {
+            return this.transitLocation;
+        }
+        else
+        {
+            return "This itinerary hasn't to have a transit flight";
+        }
+    }
+    public boolean isTransit()
+    {
+        return this.checkTransit;
     }
    
 }

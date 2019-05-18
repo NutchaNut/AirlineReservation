@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class FlightManager {
 
@@ -8,6 +9,8 @@ public class FlightManager {
         String scheduleFile = "Schedule.txt";
         private ArrayList<Flight> allFlight = new ArrayList<Flight>();
         private ArrayList<ScheduleFlight> allSchedule = new ArrayList<ScheduleFlight>();
+        ArrayList<OperateFlight> searchFlight = new ArrayList<OperateFlight>();
+
        public void initialize()
        {
             FlightFileReader readFlight = new FlightFileReader();
@@ -49,30 +52,79 @@ public class FlightManager {
 
        }
 
-       public ArrayList<Flight> searchFlight(String origin,String destination,Date date,int noPassenger)
+       public ArrayList<OperateFlight> searchFlight(String origin,String destination,Date date,int noPassenger)
        {
-           ArrayList<Flight> searchFlight = null;
-           OperateFlight gotFlight = null;
-
-           String tempId = null;
-           String tempOrigin =null;
-           String tempDest = null;
-           Date tempDate = new Date();
-
            
-            for(int i=0; i< allFlight.size() ; i++)
+           OperateFlight gotFlight = null;
+           Flight flight = null;
+           Flight transit = null;
+           ScheduleFlight schedule = null;
+
+           SimpleDateFormat simpleDateformat = new SimpleDateFormat("E"); // the day of the week abbreviated
+           
+           
+            for(int i=0; i < allFlight.size() ; i++)
             {
                 if(origin.equals(allFlight.get(i).getOrigin()) && destination.equals(allFlight.get(i).getDestination()))
                 {
                     if(noPassenger <= allFlight.get(i).getTotalAvailableSeat())
                     {
-                        tempId = allFlight.get(i).getFlightId();
-                        for(int j=0; i<allSchedule.size() ; j++)
-                        {
+                        flight = allFlight.get(i);
+                        
 
+                        for(int j=0; j < allSchedule.size() ; j++)
+                        {
+                            if(flight.getFlightId().equals(allSchedule.get(j).getFlightId()))
+                            {
+                                schedule = allSchedule.get(j);
+                                Date now = new Date();
+                                for(int k=0 ; k < schedule.getDay().size() ; k++)
+                                {
+                                    if(simpleDateformat.format(date).equals(schedule.getDay().get(k)) && !(now.equals(date)))
+                                    {
+                                        gotFlight = new OperateFlight(flight, date, origin, destination,null,false);
+                                        searchFlight.add(gotFlight);
+                                    }
+                                    else
+                                    {
+                                        System.out.println("Please search for flights at least 1 day in advance before traveling.");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                System.out.println("Sorry,we don't have any flights traveling on this day.");
+                            }
                         }
                     }
+                    else
+                    {
+                        System.out.println("Sorry,we don't have any flights that have enought seats for you.");
+                    }
                     
+                }
+                else if(origin.equals(allFlight.get(i).getOrigin()))
+                {   
+                    String tempDestination = allFlight.get(i).getDestination();
+                
+                    for(int j=0 ;j<allFlight.size();j++)
+                        if(tempDestination.equals(allFlight.get(j).getOrigin()) && destination.equals(allFlight.get(j).getDestination()))
+                        {
+                            if(noPassenger <= allFlight.get(i).getTotalAvailableSeat() && noPassenger <= allFlight.get(j).getTotalAvailableSeat())
+                            {
+                                flight = allFlight.get(i);
+                                transit = allFlight.get(j);
+                                for(int k=0; k < allSchedule.size() ; k++)
+                                {
+                                    
+                                }
+                                
+                            }
+                            else
+                            {
+                                System.out.println("Sorry,we don't have any flights that have enought seats for you.");
+                            }
+                        }
                 }
             }
             
@@ -80,13 +132,14 @@ public class FlightManager {
            
        }
 
-       public Flight selectFlight()
+       public OperateFlight selectFlight()
        {
-           Flight flight = null;
+           OperateFlight flight = null;
+           printFlight(searchFlight);
            return flight;
        }
 
-       public void printFlight(ArrayList<Flight> allFlight)
+       public void printFlight(ArrayList<OperateFlight> allFlight)
        {
 
            
