@@ -22,13 +22,20 @@ public class ReservationManager{
 
     public boolean cancelReservation(String reservationId){
 
+        Scanner in = new Scanner(System.in);
+
         Iterator iter = allReservations.iterator();
         while (iter.hasNext()) {
             Reservation object = (Reservation)iter.next();
-            String id = object.getReservationId();
-            if(id.equals(reservationId)){
-                iter.remove();
-                System.out.println("cancel success");
+            if(object.getReservationId().equals(reservationId)){
+                object.printIniterary();
+                System.out.println("---------------------------------------------------------");
+                System.out.println("Do you want to cancel this reservation?[y/n] :");
+                String ans = in.nextLine();
+                if(ans.equals("y")){
+                    iter.remove();
+                    System.out.println("cancel success");
+                }
                 return true;
             }
         }
@@ -36,14 +43,14 @@ public class ReservationManager{
         return false;
     }
 
-    public boolean showReservation(String reservationId){
+    public void showReservation(String reservationId){
         Reservation reservation = searchById(reservationId);
         if(reservation != null){
             reservation.printIniterary();
-            return true;
+            //return true;
         }else{
             System.out.println("Not Found Reservation");
-            return false;
+            //return false;
         }
     }
 
