@@ -2,22 +2,22 @@ import java.util.Date;
 
 public class OperateFlight
 {
-    private String flightId;
+    private Flight flight = null;
     private Date initeraryDate = new Date();
     private String originLocation;
     private String destinationLocation;
 
-    OperateFlight(String flightId,Date date,String origin,String destination)
+    OperateFlight(Flight flight,Date date,String origin,String destination)
     {
-        this.flightId = flightId;
+        this.flight = flight;
         this.initeraryDate = date;
         this.originLocation = origin;
         this.destinationLocation = destination;
     }
 
-    public String getFlightId()
+    public Flight getFlight()
     {
-        return this.flightId;
+        return this.flight;
     }
 
     public Date getIniteraryDate()
