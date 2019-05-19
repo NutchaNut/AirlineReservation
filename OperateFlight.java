@@ -4,28 +4,28 @@ public class OperateFlight
 {
     private Flight flight = null;
     private Date itineraryDate = new Date();
-    private String originLocation;
-    private String destinationLocation;
+    private ScheduleFlight flightDetial = null;
+    private ScheduleFlight transitDetail =null;
     private Flight transitFlight;
     private boolean checkTransit;
 
-    OperateFlight(Flight flight,Date date,String origin,String destination,Flight transit,boolean checkTransit)
+    OperateFlight(Flight flight,Date date,ScheduleFlight flightDetail,ScheduleFlight transitDetail,Flight transit,boolean checkTransit)
     {
         
         if(checkTransit == false)
         {
             this.flight = flight;
             this.itineraryDate = date;
-            this.originLocation = origin;
-            this.destinationLocation = destination;
-            this.transitFlight = null;
+            this.flightDetial = flightDetail;
+            this.transitDetail = transitDetail;
+            this.transitFlight = transit;
         }
         else
         {
             this.flight = flight;
             this.itineraryDate = date;
-            this.originLocation = origin;
-            this.destinationLocation = destination;
+            this.flightDetial = flightDetail;
+            this.transitDetail = transitDetail;
             this.transitFlight = transit;
 
         }
@@ -41,14 +41,14 @@ public class OperateFlight
         return this.itineraryDate;
     }
 
-    public String getOriginLocation()
+    public ScheduleFlight getFlightDetail()
     {
-        return this.originLocation;
+        return this.flightDetial;
     }
 
-    public String getDestinationLocation()
+    public ScheduleFlight getTransitDetail()
     {
-        return this.destinationLocation;
+        return this.transitDetail;
     }
 
     public Flight getTransitFlight()

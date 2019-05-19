@@ -9,7 +9,9 @@ public class FlightManager {
     private ArrayList<ScheduleFlight> allSchedule = new ArrayList<ScheduleFlight>();
     ArrayList<OperateFlight> searchFlight = new ArrayList<OperateFlight>();
 
-    public void initialize() {
+    public void initialize() 
+    {
+
         FlightFileReader readFlight = new FlightFileReader();
         boolean checkFlight = readFlight.open(flightFile);
         if (checkFlight) {
@@ -71,7 +73,7 @@ public class FlightManager {
                                 {
                                     if(simpleDateformat.format(date).equals(schedule.getDay().get(k)) && !(now.equals(date)))
                                     {
-                                        gotFlight = new OperateFlight(flight, date, origin, destination,null,false);
+                                        gotFlight = new OperateFlight(flight, date, schedule, null,null,false);
                                         searchFlight.add(gotFlight);
                                     }
                                     else
@@ -126,11 +128,16 @@ public class FlightManager {
                                 {
                                     if(simpleDateformat.format(date).equals(scheduleFlight.getDay().get(k)) && !(now.equals(date)))
                                     {
+                                        /*
+                                         * If the transit flight have traveling in the same day of 
+                                         * the previous flight also check the transit time is appropriate.
+                                         */
                                         if((simpleDateformat.format(date).equals(scheduleTransit.getDay().get(k)) 
-                                            || simpleDateformat.format(tomorrow).equals(scheduleTransit.getDay().get(k))) 
-                                            && scheduleFlight.getArrivalTime().before(scheduleTransit.getDepartureTime()))
+                                        && scheduleFlight.getArrivalTime().before(scheduleTransit.getDepartureTime())) 
+                                        || simpleDateformat.format(tomorrow).equals(scheduleTransit.getDay().get(k)))
+                                            
                                         {
-                                            gotFlight = new OperateFlight(flight, date, origin, destination,transit,true);
+                                            gotFlight = new OperateFlight(flight, date,scheduleFlight ,scheduleTransit ,transit,true);
                                             searchFlight.add(gotFlight);
                                         }
                                         else
@@ -161,14 +168,54 @@ public class FlightManager {
        public OperateFlight selectFlight()
        {
            OperateFlight flight = null;
+           Scanner input = new Scanner(System.in);
            printFlight(searchFlight);
+
+           int  chooseFlight = input.nextInt();
+           flight = searchFlight.get(chooseFlight-1);
+
+           input.close();
+
            return flight;
        }
 
        public void printFlight(ArrayList<OperateFlight> allFlight)
        {
-
+            OperateFlight flight = null;
+            System.out.println("  No  |    Flight ID   |\t    Airline    |\t Origin Location |\t Destination Location |\t Departure Time  |\t  Arrival Time  ");
+            for(int i=0 ; i < allFlight.size() ; i++)
+            {
+                flight = allFlight.get(i);
+                if(flight.isTransit() == false)
+                {
+                    System.out.println("["+(i+1)+"]"+flight.getFlight().getFlightId()+" |\t"
+                                    +flight.getFlight().getAirline()+" |\t"
+                                    +flight.getFlight().getOrigin()+" |\t"
+                                    +flight.getFlight().getDestination()+" |\t"
+                                    +flight.getFlightDetail().getDepartureTime()+" |\t"
+                                    +flight.getFlightDetail().getArrivalTime());
+                }
+                else
+                {
+                    System.out.println("["+(i+1)+"]"+flight.getFlight().getFlightId()+" |\t"
+                                    +flight.getFlight().getAirline()+" |\t"
+                                    +flight.getFlight().getOrigin()+" |\t"
+                                    +flight.getFlight().getDestination()+" |\t"
+                                    +flight.getFlightDetail().getDepartureTime()+" |\t"
+                                    +flight.getFlightDetail().getArrivalTime());
+                    System.out.println("You have to transit flight at "+flight.getFlight().getDestination()+" when arrival.And transit flight detail is");
+                    System.out.println(flight.getTransitFlight().getFlightId()+"  "+flight.getTransitFlight().getAirline()+"  "
+                                        +flight.getTransitDetail().getDepartureTime()+"  "+flight.getTransitDetail().getArrivalTime());
+                                    
+                }
+                
+            }
            
+       }
+
+       public void clearSearch()
+       {
+            searchFlight.clear();
        }
     
 }
