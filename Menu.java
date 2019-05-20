@@ -12,40 +12,30 @@ public class Menu {
 
     private static ReservationManager allReservation;
 
-    private static int menu()
-    {   
-        int selectMenu = 0;
-        Scanner in = new Scanner(System.in);
-        
-        System.out.println("---------------------------------------");
-        System.out.println("menu : ");
-        System.out.println("1 Search Flight");
-        System.out.println("2 Search Reservation");
-        System.out.println("3 Cancl Reservation");
-        System.out.println("0 Exit");
-        System.out.println("---------------------------------------");
-        System.out.println("Enter menu : ");
-        selectMenu = in.nextInt();
-        System.out.flush();
-
-        return selectMenu;
-    }
     public static void main(String[] args) 
     {
 
         Scanner in = new Scanner(System.in);
+
         int selectMenu = 0;
         String id;
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        FlightManager managerFlight = new FlightManager();
-        OperateFlight selectFlight = null;
-        ReservationManager managerReservation = new ReservationManager();
-
-        managerFlight.initialize();
+        FlightManager manager = new FlightManager();
+        manager.initialize();
 
         System.out.println("welcome to airline reservation program");
         do 
-        {   selectMenu = menu();
+        {
+            System.out.println("---------------------------------------");
+            System.out.println("menu : ");
+            System.out.println("1 Search Flight");
+            System.out.println("2 Search Reservation");
+            System.out.println("3 Cancl Reservation");
+            System.out.println("0 Exit");
+            System.out.println("---------------------------------------");
+            System.out.println("Enter menu : ");
+            selectMenu = in.nextInt();
+            System.out.flush();
 
             switch (selectMenu) 
             {
@@ -67,12 +57,7 @@ public class Menu {
                     }
                     System.out.println("Enter number of passenger");
                     noPassenger = in.nextInt();
-                    selectFlight = managerFlight.searchFlight(originLocation,destinationLocation,date,noPassenger);
-                    if(selectFlight == null)
-                    {
-                        break;
-                    }
-                    managerReservation.createReservation(selectFlight, noPassenger);
+                    manager.searchFlight(originLocation,destinationLocation,date,noPassenger);
                     break;
                 case 2 : 
                     System.out.println("----------- Search Reservation -----------");

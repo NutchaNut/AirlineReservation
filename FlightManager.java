@@ -178,26 +178,15 @@ public class FlightManager
        public OperateFlight selectFlight()
        {
            OperateFlight flight = null;
-          
            Scanner input = new Scanner(System.in);
            printFlight(searchFlight);
-           System.out.print("Please enter No of flight to make the reservation[don't want to select any flight type zero(0)] :");
+
            int  chooseFlight = input.nextInt();
-           if(chooseFlight == 0)
-           {
-               flight = null;
-           }
-           else
-           {
-                flight = searchFlight.get(chooseFlight-1);
-               
-           }
-           
+           flight = searchFlight.get(chooseFlight-1);
 
            input.close();
 
            return flight;
-           
        }
 
        public void printFlight(ArrayList<OperateFlight> allFlight)

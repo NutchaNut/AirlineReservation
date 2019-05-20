@@ -63,13 +63,16 @@ public class ReservationManager{
 
     }
 
-    public void createReservation(OperateFlight flight, int noPassenger){
+    public void createReservation(OperateFlight flight, Date date){
 
         String reservationId = generateId();
         System.out.println(reservationId);
 
         Scanner in = new Scanner(System.in);
-        
+        int noPassenger;
+
+        System.out.println("Enter Number of Passenger : ");
+        noPassenger = in.nextInt();
 
         Reservation reservation = new Reservation(reservationId,flight, noPassenger);
         reservation.addPassenger();
