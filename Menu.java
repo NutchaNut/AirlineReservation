@@ -12,7 +12,8 @@ public class Menu {
 
     private static ReservationManager allReservation;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
 
         Scanner in = new Scanner(System.in);
 
@@ -23,7 +24,8 @@ public class Menu {
         manager.initialize();
 
         System.out.println("welcome to airline reservation program");
-        do {
+        do 
+        {
             System.out.println("---------------------------------------");
             System.out.println("menu : ");
             System.out.println("1 Search Flight");
@@ -35,7 +37,8 @@ public class Menu {
             selectMenu = in.nextInt();
             System.out.flush();
 
-            switch (selectMenu) {
+            switch (selectMenu) 
+            {
                 case 1:
                     System.out.println("Enter your origin location");
                     originLocation = in.nextLine();
@@ -74,6 +77,7 @@ public class Menu {
 
         }while(selectMenu != 0);
         
+        in.close();
     }
     
 }

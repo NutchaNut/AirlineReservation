@@ -1,7 +1,8 @@
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class FlightManager {
+public class FlightManager 
+{
 
     String flightFile = "Flight.txt";
     String scheduleFile = "Schedule.txt";
@@ -14,13 +15,17 @@ public class FlightManager {
 
         FlightFileReader readFlight = new FlightFileReader();
         boolean checkFlight = readFlight.open(flightFile);
-        if (checkFlight) {
+        if (checkFlight) 
+        {
             Flight flight = null;
-            while ((flight = readFlight.readFlight()) != null) {
+            while ((flight = readFlight.readFlight()) != null) 
+            {
                 allFlight.add(flight);
             }
 
-        } else {
+        } 
+        else 
+        {
             System.out.println("Error opening file" + flightFile);
             System.exit(1);
 
@@ -30,12 +35,16 @@ public class FlightManager {
 
         FlightFileReader readSchedule = new FlightFileReader();
         boolean checkSchedule = readSchedule.open(scheduleFile);
-        if (checkSchedule) {
+        if (checkSchedule) 
+        {
             ScheduleFlight schedule = null;
-            while ((schedule = readSchedule.readSchedule()) != null) {
+            while ((schedule = readSchedule.readSchedule()) != null) 
+            {
                 allSchedule.add(schedule);
             }
-        } else {
+        } 
+        else 
+        {
             System.out.println("Error opening file" + scheduleFile);
             System.exit(1);
         }
@@ -43,13 +52,14 @@ public class FlightManager {
 
     }
 
-    public ArrayList<OperateFlight> searchFlight(String origin,String destination,Date date,int noPassenger)
+    public OperateFlight searchFlight(String origin,String destination,Date date,int noPassenger)
        {
            
            OperateFlight gotFlight = null;
            Flight flight = null;
            Flight transit = null;
            ScheduleFlight schedule = null;
+           OperateFlight selectedFlight = null;
 
            SimpleDateFormat simpleDateformat = new SimpleDateFormat("E"); // the day of the week abbreviated
            
@@ -128,10 +138,9 @@ public class FlightManager {
                                 {
                                     if(simpleDateformat.format(date).equals(scheduleFlight.getDay().get(k)) && !(now.equals(date)))
                                     {
-                                        /*
-                                         * If the transit flight have traveling in the same day of 
-                                         * the previous flight also check the transit time is appropriate.
-                                         */
+                                        
+                                        /*If the transit flight have traveling in the same day of the previous flight and also check the transit time is appropriate.*/
+                                         
                                         if((simpleDateformat.format(date).equals(scheduleTransit.getDay().get(k)) 
                                         && scheduleFlight.getArrivalTime().before(scheduleTransit.getDepartureTime())) 
                                         || simpleDateformat.format(tomorrow).equals(scheduleTransit.getDay().get(k)))
@@ -161,7 +170,8 @@ public class FlightManager {
                 }
             }
             
-        return searchFlight;
+            selectedFlight = selectFlight();
+        return selectedFlight;
            
        }
 
