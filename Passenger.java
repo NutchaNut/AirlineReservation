@@ -1,6 +1,7 @@
 import java.util.Date;
 
-public class Passenger{
+public class Passenger
+{
 
     private String name;
     private String lastName;
@@ -10,7 +11,8 @@ public class Passenger{
     private String phoneNumber;
     private String email;
 
-    Passenger(String name, String lastName,String passportId, String birthday, String gender, String phoneNumber, String email){
+    Passenger(String name, String lastName,String passportId, String birthday, String gender, String phoneNumber, String email)
+    {
         this.name = name;
         this.lastName = lastName;
         this.passportId = passportId;
@@ -20,7 +22,8 @@ public class Passenger{
         this.email = email;
     }
 
-    public void printPassenger(){
+    public void printPassenger()
+    {
         System.out.println("Name : " + name);
         System.out.println("Lastname : " + lastName);
         System.out.println("Passport Id : " + passportId);
