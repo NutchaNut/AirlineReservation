@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 import java.util.Scanner;
 import java.util.Iterator;
 
@@ -83,6 +83,7 @@ public class Reservation{
 
         //print flight
         System.out.println("Flight Detail : ");
+        selectedFlight.printFlight();
         //print all passenger 
         System.out.println("Passenger : ");
         Iterator iter = passengers.iterator();

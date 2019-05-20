@@ -59,5 +59,12 @@ public class OperateFlight
     {
         return this.checkTransit;
     }
+
+    public void printFlight(){
+        System.out.println("Flight Id : " + flight.getFlightId());
+        System.out.println("Airline : " + flight.getAirline());
+        System.out.println("Departure from : " + flight.getOrigin() + "   Departure Time : " + flightDetial.getDepartureTime());
+        System.out.println("Arrival at : " + flight.getDestination()+ "   Arrival Time : " + flightDetial.getArrivalTime());
+    }
    
 }
