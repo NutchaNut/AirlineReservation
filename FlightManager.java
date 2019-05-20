@@ -182,7 +182,16 @@ public class FlightManager
            printFlight(searchFlight);
 
            int  chooseFlight = input.nextInt();
-           flight = searchFlight.get(chooseFlight-1);
+
+           if(chooseFlight == 0)
+           {
+               flight = null;
+           }
+           else
+           {
+            flight = searchFlight.get(chooseFlight-1);
+           }
+           
 
            input.close();
 

@@ -16,12 +16,14 @@ public class Menu {
     {
 
         Scanner in = new Scanner(System.in);
-
         int selectMenu = 0;
         String id;
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        FlightManager manager = new FlightManager();
-        manager.initialize();
+        FlightManager flightManager = new FlightManager();
+        ReservationManager reservationManager = new ReservationManager();
+        OperateFlight selectFlight = null;
+
+        flightManager.initialize();
 
         System.out.println("welcome to airline reservation program");
         do 
@@ -57,7 +59,14 @@ public class Menu {
                     }
                     System.out.println("Enter number of passenger");
                     noPassenger = in.nextInt();
-                    manager.searchFlight(originLocation,destinationLocation,date,noPassenger);
+                    selectFlight = flightManager.searchFlight(originLocation,destinationLocation,date,noPassenger);
+
+                    if(selectFlight == null)
+                    {
+                        break;
+                    }
+
+                    reservationManager.createReservation(selectFlight, noPassenger);
                     break;
                 case 2 : 
                     System.out.println("----------- Search Reservation -----------");
