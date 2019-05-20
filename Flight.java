@@ -9,7 +9,7 @@ public class Flight
     private String origin;
     private String destination;
 
-    Flight(String flightId,String airline,int totalSeat,int price,String origin,String destination)
+    public Flight(String flightId,String airline,int totalSeat,int price,String origin,String destination)
     {
         this.flightId = flightId;
         this.airline = airline;

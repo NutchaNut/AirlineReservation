@@ -9,7 +9,7 @@ public class OperateFlight
     private Flight transitFlight;
     private boolean checkTransit;
 
-    OperateFlight(Flight flight,Date date,ScheduleFlight flightDetail,ScheduleFlight transitDetail,Flight transit,boolean checkTransit)
+    public OperateFlight(Flight flight,Date date,ScheduleFlight flightDetail,ScheduleFlight transitDetail,Flight transit,boolean checkTransit)
     {
         
         if(checkTransit == false)
