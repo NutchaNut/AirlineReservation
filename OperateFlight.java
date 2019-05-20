@@ -66,5 +66,11 @@ public class OperateFlight
         System.out.println("Departure from : " + flight.getOrigin() + "   Departure Time : " + flightDetial.getDepartureTime());
         System.out.println("Arrival at : " + flight.getDestination()+ "   Arrival Time : " + flightDetial.getArrivalTime());
     }
+
+    public void printTransitFlight(){
+        System.out.println("You have to transit flight at "+flight.getDestination()+" when arrival.And transit flight detail is");
+                    System.out.println(flight.getFlightId()+"  "+flight.getAirline()+"  "
+                                        +transitDetail.getDepartureTime()+"  "+transitDetail.getArrivalTime());
+    }
    
 }

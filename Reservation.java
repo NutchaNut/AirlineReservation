@@ -83,7 +83,13 @@ public class Reservation{
 
         //print flight
         System.out.println("Flight Detail : ");
-        selectedFlight.printFlight();
+        if(selectedFlight.isTransit()){
+            selectedFlight.printFlight();
+        }else{
+            selectedFlight.printFlight();
+            selectedFlight.printTransitFlight();
+        }
+       
         //print all passenger 
         System.out.println("Passenger : ");
         Iterator iter = passengers.iterator();

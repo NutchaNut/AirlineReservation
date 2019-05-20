@@ -188,24 +188,27 @@ public class FlightManager {
                 flight = allFlight.get(i);
                 if(flight.isTransit() == false)
                 {
-                    System.out.println("["+(i+1)+"]"+flight.getFlight().getFlightId()+" |\t"
-                                    +flight.getFlight().getAirline()+" |\t"
-                                    +flight.getFlight().getOrigin()+" |\t"
-                                    +flight.getFlight().getDestination()+" |\t"
-                                    +flight.getFlightDetail().getDepartureTime()+" |\t"
-                                    +flight.getFlightDetail().getArrivalTime());
+                    flight.printFlight();
+                    // System.out.println("["+(i+1)+"]"+flight.getFlight().getFlightId()+" |\t"
+                    //                 +flight.getFlight().getAirline()+" |\t"
+                    //                 +flight.getFlight().getOrigin()+" |\t"
+                    //                 +flight.getFlight().getDestination()+" |\t"
+                    //                 +flight.getFlightDetail().getDepartureTime()+" |\t"
+                    //                 +flight.getFlightDetail().getArrivalTime());
                 }
                 else
                 {
-                    System.out.println("["+(i+1)+"]"+flight.getFlight().getFlightId()+" |\t"
-                                    +flight.getFlight().getAirline()+" |\t"
-                                    +flight.getFlight().getOrigin()+" |\t"
-                                    +flight.getFlight().getDestination()+" |\t"
-                                    +flight.getFlightDetail().getDepartureTime()+" |\t"
-                                    +flight.getFlightDetail().getArrivalTime());
-                    System.out.println("You have to transit flight at "+flight.getFlight().getDestination()+" when arrival.And transit flight detail is");
-                    System.out.println(flight.getTransitFlight().getFlightId()+"  "+flight.getTransitFlight().getAirline()+"  "
-                                        +flight.getTransitDetail().getDepartureTime()+"  "+flight.getTransitDetail().getArrivalTime());
+                    flight.printFlight();
+                    flight.printTransitFlight();
+                    // System.out.println("["+(i+1)+"]"+flight.getFlight().getFlightId()+" |\t"
+                    //                 +flight.getFlight().getAirline()+" |\t"
+                    //                 +flight.getFlight().getOrigin()+" |\t"
+                    //                 +flight.getFlight().getDestination()+" |\t"
+                    //                 +flight.getFlightDetail().getDepartureTime()+" |\t"
+                    //                 +flight.getFlightDetail().getArrivalTime());
+                    // System.out.println("You have to transit flight at "+flight.getFlight().getDestination()+" when arrival.And transit flight detail is");
+                    // System.out.println(flight.getTransitFlight().getFlightId()+"  "+flight.getTransitFlight().getAirline()+"  "
+                    //                     +flight.getTransitDetail().getDepartureTime()+"  "+flight.getTransitDetail().getArrivalTime());
                                     
                 }
                 
