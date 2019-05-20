@@ -88,7 +88,7 @@ public class Reservation{
         Iterator iter = passengers.iterator();
         while (iter.hasNext()) {
             Passenger object = (Passenger)iter.next();
-            object.toString();
+            object.printPassenger();
         }
 
 

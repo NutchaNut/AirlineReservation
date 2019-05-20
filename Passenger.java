@@ -20,14 +20,15 @@ public class Passenger{
         this.email = email;
     }
 
-    public String toString(){
-        return "Name : " + name + '\'' +
-        "Lastname : " + lastName + '\'' +
-        "Passport Id : " + passportId + '\'' +
-        "Birthday : " + birthday + '\'' +
-        "Gender : " + gender + '\'' +
-        "Phone Number : " + phoneNumber  + '\'' +
-        "Email : " + email;
+    public void printPassenger(){
+        System.out.println("Name : " + name);
+        System.out.println("Lastname : " + lastName);
+        System.out.println("Passport Id : " + passportId);
+        System.out.println("Birthday : " + birthday);
+        System.out.println("Gender : " + gender);
+        System.out.println("Phone Number : " + phoneNumber);
+        System.out.println("Email : " + email);
+
     }
     
 }
