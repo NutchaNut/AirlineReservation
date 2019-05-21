@@ -12,23 +12,13 @@ public class OperateFlight
     public OperateFlight(Flight flight,Date date,ScheduleFlight flightDetail,ScheduleFlight transitDetail,Flight transit,boolean checkTransit)
     {
         
-        if(checkTransit == false)
-        {
-            this.flight = flight;
-            this.itineraryDate = date;
-            this.flightDetial = flightDetail;
-            this.transitDetail = transitDetail;
-            this.transitFlight = transit;
-        }
-        else
-        {
-            this.flight = flight;
-            this.itineraryDate = date;
-            this.flightDetial = flightDetail;
-            this.transitDetail = transitDetail;
-            this.transitFlight = transit;
 
-        }
+            this.flight = flight;
+            this.itineraryDate = date;
+            this.flightDetial = flightDetail;
+            this.transitDetail = transitDetail;
+            this.transitFlight = transit;
+            this.checkTransit = checkTransit;
     }
 
     public Flight getFlight()
@@ -70,7 +60,7 @@ public class OperateFlight
 
     public void printTransitFlight(){
         System.out.println("You have to transit flight at "+flight.getDestination()+" when arrival.And transit flight detail is");
-                    System.out.println(flight.getFlightId()+"  "+flight.getAirline()+"  "
+                    System.out.println(transitFlight.getFlightId()+"  "+transitFlight.getAirline()+"  "
                                         +transitDetail.getDepartureTime()+"  "+transitDetail.getArrivalTime());
     }
    

@@ -10,7 +10,7 @@ public class FlightManager
     private ArrayList<ScheduleFlight> allSchedule = new ArrayList<ScheduleFlight>();
     ArrayList<OperateFlight> searchFlight = new ArrayList<OperateFlight>();
     String[] weekDay = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
-
+    
     public void initialize() 
     {
 
@@ -27,7 +27,7 @@ public class FlightManager
         } 
         else 
         {
-            System.out.println("Error opening file" + flightFile);
+            System.out.println("Error opening file " + flightFile);
             System.exit(1);
 
         }
@@ -61,9 +61,6 @@ public class FlightManager
            Flight transit = null;
            ScheduleFlight schedule = null;
           
-
-           SimpleDateFormat simpleDateformat = new SimpleDateFormat("E"); // the day of the week abbreviated
-           
            
             for(int i=0; i < allFlight.size() ; i++)
             {
@@ -78,10 +75,9 @@ public class FlightManager
                         {
                             if(flight.getFlightId().equals(allSchedule.get(j).getFlightId()))
                             {
-                                schedule = allSchedule.get(j);
+                            	schedule = allSchedule.get(j);
                                 Date now = new Date();
-
-                                Calendar c = Calendar.getInstance();
+                            	Calendar c = Calendar.getInstance();
                                 c.setTime(date);
                                 int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
                                 String day = weekDay[dayOfWeek];
@@ -123,6 +119,7 @@ public class FlightManager
                                 transit = allFlight.get(j);
                                 ScheduleFlight scheduleFlight = null;
                                 ScheduleFlight scheduleTransit = null;
+                 
                                 for(int k=0; k < allSchedule.size() ; k++)
                                 {
                                     if(flight.getFlightId().equals(allSchedule.get(k).getFlightId()))
@@ -137,26 +134,26 @@ public class FlightManager
                                         scheduleTransit = allSchedule.get(k);
                                     }
                                 }
-                                
                                 Calendar c = Calendar.getInstance();
                                 c.setTime(date);
-                                int tempDay = c.get(Calendar.DAY_OF_WEEK);
+                                int tempDay = c.get(Calendar.DAY_OF_WEEK) - 1;
                                 String thisDay = weekDay[tempDay];
-
+                                
                                 Date now = new Date();
                                 Date tomorrow = new Date(date.getTime()+ (1000 * 60 * 60 * 24)); //get tomorrow of date
                                 c.setTime(tomorrow);
-                                tempDay = c.get(Calendar.DAY_OF_WEEK);
+                                tempDay = c.get(Calendar.DAY_OF_WEEK)- 1;
                                 String tomorrowDay = weekDay[tempDay];
-
+                                
+                                
                                 for(int k=0 ; k < scheduleFlight.getDay().size() ; k++)
                                 {
-                                    if(day.equals(schedule.getDay().get(k)) && !(now.equals(date)))
+                                    if(thisDay.equals(scheduleFlight.getDay().get(k)) && !(now.equals(date)))
                                     {
                                         
                                         /*If the transit flight have traveling in the same day of the previous flight and also check the transit time is appropriate.*/
                                          
-                                        if((day.equals(scheduleTransit.getDay().get(k)) 
+                                        if((thisDay.equals(scheduleTransit.getDay().get(k)) 
                                         && scheduleFlight.getArrivalTime().before(scheduleTransit.getDepartureTime())) 
                                         || tomorrowDay.equals(scheduleTransit.getDay().get(k)))
                                             
