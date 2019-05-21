@@ -10,9 +10,6 @@ public class Menu {
         private static int noPassenger;
 
         private static ReservationManager allReservation = null;
-    
-        private static ArrayList<Passenger> passengers = new ArrayList<Passenger>();
-
 
     public static void main(String[] args) 
     {
