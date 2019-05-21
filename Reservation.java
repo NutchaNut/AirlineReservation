@@ -45,25 +45,25 @@ public class Reservation{
         for(int i = 1; i <= numberOfPassenger; i++){
             System.out.println("Passenger : " + i);
 
-            System.out.println("Name : ");
+            System.out.print("Name : ");
             name = in.nextLine();
 
-            System.out.println("LastName : ");
+            System.out.print("LastName : ");
             lastName = in.nextLine();
 
-            System.out.println("passport ID : ");
+            System.out.print("passport ID : ");
             passportId = in.nextLine();
 
-            System.out.println("Birthday(dd/mm/yyyy) : ");
+            System.out.print("Birthday(dd/mm/yyyy) : ");
             birthday = in.nextLine();
 
-            System.out.println("Gender(Male/Female) : ");
+            System.out.print("Gender(Male/Female) : ");
             gender = in.nextLine();
 
-            System.out.println("Phone Number : ");
+            System.out.print("Phone Number : ");
             phoneNumber = in.nextLine();
 
-            System.out.println("Email : ");
+            System.out.print("Email : ");
             email = in.nextLine();
 
             Passenger passenger = new Passenger(name, lastName, passportId, birthday, gender, phoneNumber, email);
