@@ -86,22 +86,22 @@ public class FlightManager
                                         gotFlight = new OperateFlight(flight, date, schedule, null,null,false);
                                         searchFlight.add(gotFlight);
                                     }
-                                    else
-                                    {
-                                        System.out.println("Please search for flights at least 1 day in advance before traveling.");
-                                    }
+                                    // else
+                                    // {
+                                    //     System.out.println("Please search for flights at least 1 day in advance before traveling.");
+                                    // }
                                 }
                             }
-                            else
-                            {
-                                System.out.println("Sorry,we don't have any flights traveling on this day.");
-                            }
+                            // else
+                            // {
+                            //     System.out.println("Sorry,we don't have any flights traveling on this day.");
+                            // }
                         }
                     }
-                    else
-                    {
-                        System.out.println("Sorry,we don't have any flights that have enought seats for you.");
-                    }
+                    // else
+                    // {
+                    //     System.out.println("Sorry,we don't have any flights that have enought seats for you.");
+                    // }
                     
                 }
                 else if(origin.equals(allFlight.get(i).getOrigin()))
@@ -149,23 +149,23 @@ public class FlightManager
                                             gotFlight = new OperateFlight(flight, date,scheduleFlight ,scheduleTransit ,transit,true);
                                             searchFlight.add(gotFlight);
                                         }
-                                        else
-                                        {
-                                            System.out.println("Sorry,we don't have any flights for your traveling");
-                                        }
+                                        // else
+                                        // {
+                                        //     System.out.println("Sorry,we don't have any flights for your traveling");
+                                        // }
                                     }
-                                    else
-                                    {
-                                        System.out.println("Please search for flights at least 1 day in advance before traveling.");
-                                    }
+                                    // else
+                                    // {
+                                    //     System.out.println("Please search for flights at least 1 day in advance before traveling.");
+                                    // }
                                 }
                                 
                                 
                             }
-                            else
-                            {
-                                System.out.println("Sorry,we don't have any flights that have enought seats for you.");
-                            }
+                            // else
+                            // {
+                            //     System.out.println("Sorry,we don't have any flights that have enought seats for you.");
+                            // }
                         }
                 }
             }
