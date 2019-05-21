@@ -62,8 +62,9 @@ public class Menu {
                     System.out.println("Enter number of passenger");
                     noPassenger = in.nextInt();
                     searchFlight = flightManager.searchFlight(originLocation,destinationLocation,date,noPassenger);
-                    if(searchFlight == null)
-                    {
+                    if(searchFlight.isEmpty())
+                    {   
+                        System.out.println("Can't search your desire flight.");
                         break;
                     }
 

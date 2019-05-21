@@ -192,7 +192,7 @@ public class FlightManager
            OperateFlight flight = null;
            Scanner input = new Scanner(System.in);
            printFlight(searchFlight);
-
+            System.out.println();
            System.out.print("Type No of flight to mak reservation[0 is don't want to select any flight]: ");
            int  chooseFlight = input.nextInt();
 
