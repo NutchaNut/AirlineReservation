@@ -5,7 +5,6 @@ import java.util.Scanner;
 import java.util.List;
 
 public class ReservationManager{
-
     private ArrayList<Reservation> allReservations;
 
      public Reservation searchById(String reservationId){
