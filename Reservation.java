@@ -32,7 +32,7 @@ public class Reservation{
     
     public void addPassenger(){
 
-        Scanner in = new Scanner(System.in);
+        Scanner str = new Scanner(System.in);
 
         String name;
         String lastName;
@@ -46,25 +46,25 @@ public class Reservation{
             System.out.println("Passenger : " + i);
 
             System.out.print("Name : ");
-            name = in.nextLine();
+            name = str.nextLine();
 
             System.out.print("LastName : ");
-            lastName = in.nextLine();
+            lastName = str.nextLine();
 
             System.out.print("passport ID : ");
-            passportId = in.nextLine();
+            passportId = str.nextLine();
 
             System.out.print("Birthday(dd/mm/yyyy) : ");
-            birthday = in.nextLine();
+            birthday = str.nextLine();
 
             System.out.print("Gender(Male/Female) : ");
-            gender = in.nextLine();
+            gender = str.nextLine();
 
             System.out.print("Phone Number : ");
-            phoneNumber = in.nextLine();
+            phoneNumber = str.nextLine();
 
             System.out.print("Email : ");
-            email = in.nextLine();
+            email = str.nextLine();
 
             Passenger passenger = new Passenger(name, lastName, passportId, birthday, gender, phoneNumber, email);
             passengers.add(passenger);

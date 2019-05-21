@@ -151,12 +151,12 @@ public class FlightManager
 
                                 for(int k=0 ; k < scheduleFlight.getDay().size() ; k++)
                                 {
-                                    if(day.equals(schedule.getDay().get(k)) && !(now.equals(date)))
+                                    if(thisDay.equals(schedule.getDay().get(k)) && !(now.equals(date)))
                                     {
                                         
                                         /*If the transit flight have traveling in the same day of the previous flight and also check the transit time is appropriate.*/
                                          
-                                        if((day.equals(scheduleTransit.getDay().get(k)) 
+                                        if((thisDay.equals(scheduleTransit.getDay().get(k)) 
                                         && scheduleFlight.getArrivalTime().before(scheduleTransit.getDepartureTime())) 
                                         || tomorrowDay.equals(scheduleTransit.getDay().get(k)))
                                             
