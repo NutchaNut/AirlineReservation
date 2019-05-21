@@ -219,6 +219,7 @@ public class FlightManager
                 flight = allFlight.get(i);
                 if(flight.isTransit() == false)
                 {
+                    System.out.print("["+(i+1)+"]"+"\t|\t");
                     flight.printFlight();
                     // System.out.println("["+(i+1)+"]"+flight.getFlight().getFlightId()+" |\t"
                     //                 +flight.getFlight().getAirline()+" |\t"

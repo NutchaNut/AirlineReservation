@@ -32,7 +32,7 @@ public class Reservation{
     
     public void addPassenger(){
 
-        Scanner in = new Scanner(System.in);
+        Scanner str = new Scanner(System.in);
 
         String name;
         String lastName;
@@ -45,26 +45,26 @@ public class Reservation{
         for(int i = 1; i <= numberOfPassenger; i++){
             System.out.println("Passenger : " + i);
 
-            System.out.println("Name : ");
-            name = in.nextLine();
+            System.out.print("Name : ");
+            name = str.nextLine();
 
-            System.out.println("LastName : ");
-            lastName = in.nextLine();
+            System.out.print("LastName : ");
+            lastName = str.nextLine();
 
-            System.out.println("passport ID : ");
-            passportId = in.nextLine();
+            System.out.print("passport ID : ");
+            passportId = str.nextLine();
 
-            System.out.println("Birthday(dd/mm/yyyy) : ");
-            birthday = in.nextLine();
+            System.out.print("Birthday(dd/mm/yyyy) : ");
+            birthday = str.nextLine();
 
-            System.out.println("Gender(Male/Female) : ");
-            gender = in.nextLine();
+            System.out.print("Gender(Male/Female) : ");
+            gender = str.nextLine();
 
-            System.out.println("Phone Number : ");
-            phoneNumber = in.nextLine();
+            System.out.print("Phone Number : ");
+            phoneNumber = str.nextLine();
 
-            System.out.println("Email : ");
-            email = in.nextLine();
+            System.out.print("Email : ");
+            email = str.nextLine();
 
             Passenger passenger = new Passenger(name, lastName, passportId, birthday, gender, phoneNumber, email);
             passengers.add(passenger);
