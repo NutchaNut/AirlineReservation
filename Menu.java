@@ -17,6 +17,7 @@ public class Menu {
         
 
         Scanner in = new Scanner(System.in);
+        Scanner ch = new Scanner(System.in);
         int selectMenu = 0;
         String id;
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -44,11 +45,11 @@ public class Menu {
             {
                 case 1:
                     System.out.print("Enter your origin location : ");
-                    originLocation = in.nextLine();
+                    originLocation = ch.nextLine();
                     System.out.print("Enter your destination location : ");
-                    destinationLocation = in.nextLine();
-                    System.out.println("Enter your traveling date inform[dd/mm/yyyy]");
-                    String tempDate = in.nextLine();
+                    destinationLocation = ch.nextLine();
+                    System.out.print("Enter your traveling date inform[dd/mm/yyyy] : ");
+                    String tempDate = ch.nextLine();
                     try 
                     {
                         date = df.parse(tempDate);
