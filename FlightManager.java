@@ -79,9 +79,14 @@ public class FlightManager
                             {
                                 schedule = allSchedule.get(j);
                                 Date now = new Date();
+
+                                Calendar c = Calendar.getInstance();
+                                c.setTime(date);
+                                String dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+
                                 for(int k=0 ; k < schedule.getDay().size() ; k++)
                                 {
-                                    if(simpleDateformat.format(date).equals(schedule.getDay().get(k)) && !(now.equals(date)))
+                                    if(dayOfWeek.equals(schedule.getDay().get(k)) && !(now.equals(date)))
                                     {
                                         gotFlight = new OperateFlight(flight, date, schedule, null,null,false);
                                         searchFlight.add(gotFlight);
