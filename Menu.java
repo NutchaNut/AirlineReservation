@@ -15,6 +15,7 @@ public class Menu {
     public static void main(String[] args) 
     {
         Scanner ch = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
         int selectMenu = 0;
         String id;
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -36,7 +37,7 @@ public class Menu {
             System.out.println("0 Exit");
             System.out.println("---------------------------------------");
             System.out.print("Enter menu : ");
-            selectMenu = ch.nextInt();
+            selectMenu = in.nextInt();
             System.out.flush();
 
             switch (selectMenu) 
@@ -59,7 +60,7 @@ public class Menu {
                         error.printStackTrace();
                     }
                     System.out.println("Enter number of passenger");
-                    noPassenger = ch.nextInt();
+                    noPassenger = in.nextInt();
                     searchFlight = flightManager.searchFlight(originLocation,destinationLocation,date,noPassenger);
                     if(searchFlight == null)
                     {
@@ -93,6 +94,7 @@ public class Menu {
 
         }while(selectMenu != 0);
         
+        in.close();
         ch.close();
     }
     

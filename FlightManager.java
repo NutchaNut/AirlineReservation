@@ -84,7 +84,7 @@ public class FlightManager
                                 Calendar c = Calendar.getInstance();
                                 c.setTime(date);
                                 int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-                                STring day = weekDay[dayOfWeek];
+                                String day = weekDay[dayOfWeek];
                                 for(int k=0 ; k < schedule.getDay().size() ; k++)
                                 {
                                     if(day.equals(schedule.getDay().get(k)) && !(now.equals(date)))
