@@ -14,9 +14,6 @@ public class Menu {
 
     public static void main(String[] args) 
     {
-        
-
-        Scanner in = new Scanner(System.in);
         Scanner ch = new Scanner(System.in);
         int selectMenu = 0;
         String id;
@@ -24,6 +21,7 @@ public class Menu {
         FlightManager flightManager = new FlightManager();
         ReservationManager reservationManager = new ReservationManager();
         OperateFlight selectFlight = null;
+        ArrayList<OperateFlight> searchFlight = new ArrayList<OperateFlight>();
 
         flightManager.initialize();
 
@@ -38,12 +36,13 @@ public class Menu {
             System.out.println("0 Exit");
             System.out.println("---------------------------------------");
             System.out.print("Enter menu : ");
-            selectMenu = in.nextInt();
+            selectMenu = ch.nextInt();
             System.out.flush();
 
             switch (selectMenu) 
             {
                 case 1:
+                    flightManager.clearSearch();
                     System.out.print("Enter your origin location : ");
                     originLocation = ch.nextLine();
                     System.out.print("Enter your destination location : ");
@@ -60,8 +59,14 @@ public class Menu {
                         error.printStackTrace();
                     }
                     System.out.println("Enter number of passenger");
-                    noPassenger = in.nextInt();
-                    selectFlight = flightManager.searchFlight(originLocation,destinationLocation,date,noPassenger);
+                    noPassenger = ch.nextInt();
+                    searchFlight = flightManager.searchFlight(originLocation,destinationLocation,date,noPassenger);
+                    if(searchFlight == null)
+                    {
+                        break;
+                    }
+
+                    selectFlight = flightManager.selectFlight();
 
                     if(selectFlight == null)
                     {
@@ -73,13 +78,13 @@ public class Menu {
                 case 2 : 
                     System.out.println("----------- Search Reservation -----------");
                     System.out.println("Enter Reservation id : ");
-                    id = in.nextLine();
+                    id = ch.nextLine();
                     allReservation.showReservation(id);
                     break;
                 case 3 : 
                     System.out.println("----------- Cancl Reservation -----------");
                     System.out.println("Enter Reservation id : ");
-                    id = in.nextLine();
+                    id = ch.nextLine();
                     allReservation.cancelReservation(id);
                     break;
             }
@@ -88,7 +93,7 @@ public class Menu {
 
         }while(selectMenu != 0);
         
-        in.close();
+        ch.close();
     }
     
 }

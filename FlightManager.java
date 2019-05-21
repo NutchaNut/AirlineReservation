@@ -52,14 +52,14 @@ public class FlightManager
 
     }
 
-    public OperateFlight searchFlight(String origin,String destination,Date date,int noPassenger)
+    public ArrayList<OperateFlight> searchFlight(String origin,String destination,Date date,int noPassenger)
        {
            
            OperateFlight gotFlight = null;
            Flight flight = null;
            Flight transit = null;
            ScheduleFlight schedule = null;
-           OperateFlight selectedFlight = null;
+          
 
            SimpleDateFormat simpleDateformat = new SimpleDateFormat("E"); // the day of the week abbreviated
            
@@ -170,8 +170,8 @@ public class FlightManager
                 }
             }
             
-            selectedFlight = selectFlight();
-        return selectedFlight;
+            
+        return searchFlight;
            
        }
 
