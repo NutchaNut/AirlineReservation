@@ -3,17 +3,18 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Menu {
+        private static Reservation reserve;
+        private static String originLocation;
+        private static String destinationLocation;
+        private static Date date;
+        private static int noPassenger;
 
-    private Reservation reserve;
-    private static String originLocation;
-    private static String destinationLocation;
-    private static Date date;
-    private static int noPassenger;
-
-    private static ReservationManager allReservation;
+        private static ReservationManager allReservation = null;
+    
 
     public static void main(String[] args) 
     {
+        
 
         Scanner in = new Scanner(System.in);
         int selectMenu = 0;
