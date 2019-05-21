@@ -35,16 +35,16 @@ public class Menu {
             System.out.println("3 Cancl Reservation");
             System.out.println("0 Exit");
             System.out.println("---------------------------------------");
-            System.out.println("Enter menu : ");
+            System.out.print("Enter menu : ");
             selectMenu = in.nextInt();
             System.out.flush();
 
             switch (selectMenu) 
             {
                 case 1:
-                    System.out.println("Enter your origin location");
+                    System.out.print("Enter your origin location : ");
                     originLocation = in.nextLine();
-                    System.out.println("Enter your destination location");
+                    System.out.print("Enter your destination location : ");
                     destinationLocation = in.nextLine();
                     System.out.println("Enter your traveling date inform[dd/mm/yyyy]");
                     String tempDate = in.nextLine();
