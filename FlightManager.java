@@ -137,19 +137,28 @@ public class FlightManager
                                         scheduleTransit = allSchedule.get(k);
                                     }
                                 }
+                                
+                                Calendar c = Calendar.getInstance();
+                                c.setTime(date);
+                                int tempDay = c.get(Calendar.DAY_OF_WEEK);
+                                String thisDay = weekDay[tempDay];
 
                                 Date now = new Date();
                                 Date tomorrow = new Date(date.getTime()+ (1000 * 60 * 60 * 24)); //get tomorrow of date
+                                c.setTime(tomorrow);
+                                tempDay = c.get(Calendar.DAY_OF_WEEK);
+                                String tomorrowDay = weekDay[tempDay];
+
                                 for(int k=0 ; k < scheduleFlight.getDay().size() ; k++)
                                 {
-                                    if(simpleDateformat.format(date).equals(scheduleFlight.getDay().get(k)) && !(now.equals(date)))
+                                    if(day.equals(schedule.getDay().get(k)) && !(now.equals(date)))
                                     {
                                         
                                         /*If the transit flight have traveling in the same day of the previous flight and also check the transit time is appropriate.*/
                                          
-                                        if((simpleDateformat.format(date).equals(scheduleTransit.getDay().get(k)) 
+                                        if((day.equals(scheduleTransit.getDay().get(k)) 
                                         && scheduleFlight.getArrivalTime().before(scheduleTransit.getDepartureTime())) 
-                                        || simpleDateformat.format(tomorrow).equals(scheduleTransit.getDay().get(k)))
+                                        || tomorrowDay.equals(scheduleTransit.getDay().get(k)))
                                             
                                         {
                                             gotFlight = new OperateFlight(flight, date,scheduleFlight ,scheduleTransit ,transit,true);
