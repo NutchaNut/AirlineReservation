@@ -9,6 +9,7 @@ public class FlightManager
     private ArrayList<Flight> allFlight = new ArrayList<Flight>();
     private ArrayList<ScheduleFlight> allSchedule = new ArrayList<ScheduleFlight>();
     ArrayList<OperateFlight> searchFlight = new ArrayList<OperateFlight>();
+    String[] weekDay = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
 
     public void initialize() 
     {
@@ -82,11 +83,11 @@ public class FlightManager
 
                                 Calendar c = Calendar.getInstance();
                                 c.setTime(date);
-                                String dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-
+                                int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+                                STring day = weekDay[dayOfWeek];
                                 for(int k=0 ; k < schedule.getDay().size() ; k++)
                                 {
-                                    if(dayOfWeek.equals(schedule.getDay().get(k)) && !(now.equals(date)))
+                                    if(day.equals(schedule.getDay().get(k)) && !(now.equals(date)))
                                     {
                                         gotFlight = new OperateFlight(flight, date, schedule, null,null,false);
                                         searchFlight.add(gotFlight);
