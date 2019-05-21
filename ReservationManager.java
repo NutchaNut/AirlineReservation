@@ -67,12 +67,13 @@ public class ReservationManager{
         String reservationId = generateId();
         System.out.println(reservationId);
 
-        Scanner in = new Scanner(System.in);
-
         Reservation reservation = new Reservation(reservationId,flight, noPassenger);
         reservation.addPassenger();
         reservation.calculatePrice();
         reservation.printIniterary();
+
+        Scanner in = new Scanner(System.in);
+
 
         System.out.println("Do you want to confirm reservation?[y/n] : ");
         String ans = in.nextLine();
@@ -87,7 +88,7 @@ public class ReservationManager{
 
     }
 
-    String generateId(){
+    private String generateId(){
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";
 
         StringBuilder sb = new StringBuilder(6); 
@@ -96,7 +97,7 @@ public class ReservationManager{
 
             int index = (int)(AlphaNumericString.length() * Math.random()); 
   
-            sb.append(AlphaNumericString .charAt(index)); 
+            sb.append(AlphaNumericString.charAt(index)); 
         } 
         return sb.toString();
     }

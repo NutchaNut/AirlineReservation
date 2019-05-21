@@ -1,9 +1,9 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.io.*;
 
 public class Menu {
-        private static Reservation reserve;
         private static String originLocation;
         private static String destinationLocation;
         private static Date date;
@@ -11,6 +11,8 @@ public class Menu {
 
         private static ReservationManager allReservation = null;
     
+        private static ArrayList<Passenger> passengers = new ArrayList<Passenger>();
+
 
     public static void main(String[] args) 
     {
@@ -36,6 +38,7 @@ public class Menu {
             System.out.println("3 Cancl Reservation");
             System.out.println("0 Exit");
             System.out.println("---------------------------------------");
+            //selectMenu = getOneInteger("Enter menu : ");
             System.out.print("Enter menu : ");
             selectMenu = in.nextInt();
             System.out.flush();
@@ -46,10 +49,16 @@ public class Menu {
                     flightManager.clearSearch();
                     System.out.print("Enter your origin location : ");
                     originLocation = ch.nextLine();
+                    //originLocation = getString("Enter your origin location : ");
+                    //System.out.println(originLocation);
+
+                    //destinationLocation = getString("Enter your destination location : ");
+                    //System.out.println(destinationLocation);
                     System.out.print("Enter your destination location : ");
                     destinationLocation = ch.nextLine();
                     System.out.print("Enter your traveling date inform[dd/mm/yyyy] : ");
                     String tempDate = ch.nextLine();
+                    //String tempDate = getString("Enter your traveling date inform[dd/mm/yyyy] : ");
                     try 
                     {
                         date = df.parse(tempDate);
@@ -61,6 +70,8 @@ public class Menu {
                     }
                     System.out.println("Enter number of passenger");
                     noPassenger = in.nextInt();
+                    //noPassenger = getOneInteger("Enter number of passenger : ");
+                    System.out.println(noPassenger);
                     searchFlight = flightManager.searchFlight(originLocation,destinationLocation,date,noPassenger);
                     if(searchFlight == null)
                     {
@@ -97,5 +108,75 @@ public class Menu {
         in.close();
         ch.close();
     }
+
+    // protected static int getOneInteger(String prompt)
+    //    {
+    //    int value = 0;	   
+    //    String inputString;
+    //    int readBytes = 0;
+    //    byte buffer[] = new byte[200]; 
+    //    System.out.print(prompt);
+    //    try
+    //        {
+    //        readBytes = System.in.read(buffer,0,200);
+	//    }
+    //    catch (IOException ioe)
+    //        {
+	//    System.out.println("Input/output exception - Exiting");
+	//    System.exit(1);
+    //        }
+    //    inputString = new String(buffer);
+    //    try 
+    //        {
+	//    /* modify to work for both Windows and Linux */
+	//    int pos = inputString.indexOf("\r");
+	//    if (pos <= 0)
+	//        pos = inputString.indexOf("\n");
+    //        if (pos > 0)
+	//       inputString = inputString.substring(0,pos);
+    //        value = Integer.parseInt(inputString);
+	//    }
+    //    catch (NumberFormatException nfe) 
+    //        {
+	//    System.out.println("Bad number entered - Exiting");
+	//    System.exit(1);
+    //        }
+    //    return value;
+    //    }
+
+    //    protected static String getString(String prompt)
+    //    {
+    //    int value = 0;	   
+    //    String inputString;
+    //    int readBytes = 0;
+    //    byte buffer[] = new byte[200]; 
+    //    System.out.print(prompt);
+    //    try
+    //        {
+    //        readBytes = System.in.read(buffer,0,200);
+	//    }
+    //    catch (IOException ioe)
+    //        {
+	//    System.out.println("Input/output exception - Exiting");
+	//    System.exit(1);
+    //        }
+    //    inputString = new String(buffer);
+    //    try 
+    //        {
+	//    /* modify to work for both Windows and Linux */
+	//    int pos = inputString.indexOf("\r");
+	//    if (pos <= 0)
+	//        pos = inputString.indexOf("\n");
+    //        if (pos > 0)
+	//       inputString = inputString.substring(0,pos);
+    //        //value = Integer.parseInt(inputString);
+	//    }
+    //    catch (NumberFormatException nfe) 
+    //        {
+	//    System.out.println("Bad number entered - Exiting");
+	//    System.exit(1);
+    //        }
+    //    return inputString;
+    //    }
     
 }
