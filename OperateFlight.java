@@ -62,10 +62,13 @@ public class OperateFlight
 
     public void printFlight()
     {
-        System.out.println("Flight Id : " + flight.getFlightId());
-        System.out.println("Airline : " + flight.getAirline());
-        System.out.println("Departure from : " + flight.getOrigin() + "   Departure Time : " + flightDetial.getDepartureTime());
-        System.out.println("Arrival at : " + flight.getDestination()+ "   Arrival Time : " + flightDetial.getArrivalTime());
+         System.out.println(flight.getFlightId()+" |\t"
+                                     +flight.getAirline()+" |\t"
+                                     +flight.getOrigin()+" |\t"
+                                     +flight.getDestination()+" |\t"
+                                    +flightDetial.getDepartureTime()+" |\t"
+                                     +flightDetial.getArrivalTime());
+                
     }
 
     public void printTransitFlight(){
