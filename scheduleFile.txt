@@ -1,0 +1,5 @@
+IT506 19:20 00:10 TPE,Taiwan 100 2475
+SL394 ThaiLionAir DMK,Bangkok TPE,Taiwan 100 2345
+XW182 NokScoot DMK,Bangkok TPE,Taiwan 100 3000
+CI834 China DMK,Bangkok TPE,Taiwan 100 5200
+TG632 ThaiAirway DMK,Bangkok TPE,Taiwan 100 5700

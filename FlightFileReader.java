@@ -53,7 +53,7 @@ public class FlightFileReader extends TextFileReader
                 
             try {
                 //departureTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(fields[4]);
-                departureTime = new SimpleDateFormat("HH:mm:ss").parse(fields[4]);
+                departureTime = new SimpleDateFormat("HH:mm").parse(fields[4]);
 
             } catch (ParseException depart) {
                 // TODO Auto-generated catch block
@@ -61,7 +61,7 @@ public class FlightFileReader extends TextFileReader
             }
             try {
                 //arrivalTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(fields[5]);
-                arrivalTime = new SimpleDateFormat("HH:mm:ss").parse(fields[5]);
+                arrivalTime = new SimpleDateFormat("HH:mm").parse(fields[5]);
             } catch (ParseException arrive) {
                 // TODO Auto-generated catch block
                 arrive.printStackTrace();
