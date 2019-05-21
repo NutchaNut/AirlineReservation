@@ -4,8 +4,8 @@ import java.util.*;
 public class FlightManager 
 {
 
-    String flightFile = "Flight.txt";
-    String scheduleFile = "Schedule.txt";
+    String flightFile = "flight.txt";
+    String scheduleFile = "scheduleFile.txt";
     private ArrayList<Flight> allFlight = new ArrayList<Flight>();
     private ArrayList<ScheduleFlight> allSchedule = new ArrayList<ScheduleFlight>();
     ArrayList<OperateFlight> searchFlight = new ArrayList<OperateFlight>();
