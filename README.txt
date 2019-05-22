@@ -8,7 +8,7 @@ How to use our Airline Reservation System
 	(you can copy from the file).
 
 	example :
-	Enter your origin location : TPE,Taiwan
+	Enter your origin location : TPE,Taipei
 	Enter your destination location : DMK,Bangkok
 	Enter your traveling date inform[dd/mm/yyyy] : 20/10/2019
 
