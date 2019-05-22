@@ -144,13 +144,17 @@ public class FlightManager
                     
                     
                 }
+                /*This is for any flight that doesn't have the direct flight to the destination */
                 else if(origin.equals(allFlight.get(i).getOrigin()))
                 {   
-                    String tempDestination = allFlight.get(i).getDestination();
+                    String tempDestination = allFlight.get(i).getDestination(); /*get the destination of flight to match with ither flight */
                 
                     for(int j=0 ;j<allFlight.size();j++)
+                            /*searching for other flight that has its destination location match with itinerary destination 
+                                and has its origin location match with above flight's destination. */
                         if(tempDestination.equals(allFlight.get(j).getOrigin()) && destination.equals(allFlight.get(j).getDestination()))
                         {
+                             /*check both current flight has an empty seats enough or not */
                             if(noPassenger <= allFlight.get(i).getTotalAvailableSeat() && noPassenger <= allFlight.get(j).getTotalAvailableSeat())
                             {
                                 flight = allFlight.get(i);
@@ -158,6 +162,7 @@ public class FlightManager
                                 ScheduleFlight scheduleFlight = null;
                                 ScheduleFlight scheduleTransit = null;
                  
+                                 /*search flight ID for get the schedule for both flight*/
                                 for(int k=0; k < allSchedule.size() ; k++)
                                 {
                                     if(flight.getFlightId().equals(allSchedule.get(k).getFlightId()))
@@ -172,11 +177,13 @@ public class FlightManager
                                         scheduleTransit = allSchedule.get(k);
                                     }
                                 }
+
                                 Calendar c = Calendar.getInstance();
                                 c.setTime(date);
                                 int tempDay = c.get(Calendar.DAY_OF_WEEK) - 1;
                                 String thisDay = weekDay[tempDay];
                                 
+                                /*check the tomorrow date of the itinerary date that transit flight can be able to reserve */
                                 Date now = new Date();
                                 Date tomorrow = new Date(date.getTime()+ (1000 * 60 * 60 * 24)); //get tomorrow of date
                                 c.setTime(tomorrow);
@@ -189,7 +196,8 @@ public class FlightManager
                                     if(thisDay.equals(scheduleFlight.getDay().get(k)) && !(now.equals(date)))
                                     {
                                         
-                                        /*If the transit flight have traveling in the same day of the previous flight and also check the transit time is appropriate.*/
+                                        /*If the transit flight have traveling in the same day of the previous flight 
+                                            ,also check the transit time is appropriate.*/
                                          
                                         if((thisDay.equals(scheduleTransit.getDay().get(k)) 
                                         && scheduleFlight.getArrivalTime().before(scheduleTransit.getDepartureTime())) 
@@ -212,60 +220,72 @@ public class FlightManager
             }
             
             
-        return searchFlight;
+        return searchFlight; /*return search result to main function */
            
     }
 
-       public OperateFlight selectFlight()
-       {
-           OperateFlight flight = null;
-           Scanner input = new Scanner(System.in);
-           printFlight(searchFlight);
+    /**
+     * get the selected flight from user to making reservation.
+     * @return selected flight to the main function
+     */
+    public OperateFlight selectFlight()
+    {
+        OperateFlight flight = null;
+        Scanner input = new Scanner(System.in);
+        printFlight(searchFlight); /*print result of search flight */
            
-           System.out.print("Type No of flight to make reservation[0 is don't want to select any flight]: ");
-           int  chooseFlight = input.nextInt();
+        System.out.print("Type No of flight to make reservation[0 is don't want to select any flight]: ");
+        int  chooseFlight = input.nextInt(); /*get input from user */
 
-           if(chooseFlight == 0)
-           {
-               flight = null;
-           }
-           else
-           {
+        /*user not decide to choose any flight return null */
+        if(chooseFlight == 0) 
+        {
+            flight = null;
+        }
+        else
+        {
             flight = searchFlight.get(chooseFlight-1);
-           }
+        }
            
 
-           return flight;
-       }
+        return flight; /*return the selected flight to main function */
+    }
 
-       public void printFlight(ArrayList<OperateFlight> allFlight)
-       {
-            OperateFlight flight = null;
-            System.out.println("  No  |    Flight ID   |\t    Airline    |\t Origin Location |\t Destination Location |\t Departure Time  |\t  Arrival Time  ");
-            for(int i=0 ; i < allFlight.size() ; i++)
+    /**
+     * print all of flight in form of OperateFlight
+     * @param allFlight arraylist of OprateFlight
+     */
+    public void printFlight(ArrayList<OperateFlight> allFlight)
+    {
+        OperateFlight flight = null;
+        System.out.println("  No  |    Flight ID   |\t    Airline    |\t Origin Location |\t Destination Location |\t Departure Time  |\t  Arrival Time  ");
+        for(int i=0 ; i < allFlight.size() ; i++)
+        {
+            flight = allFlight.get(i);
+            if(flight.isTransit() == false)
             {
-                flight = allFlight.get(i);
-                if(flight.isTransit() == false)
-                {
-                    System.out.print("["+(i+1)+"]"+"\t|\t");
-                    flight.printFlight();
+                System.out.print("["+(i+1)+"]"+"\t|\t");
+                flight.printFlight();
                    
-                }
-                else
-                {
-                    flight.printFlight();
-                    flight.printTransitFlight();
+            }
+            else
+            {
+                flight.printFlight();
+                flight.printTransitFlight();
                     
                                     
-                }
-                
             }
+                
+        }
            
-       }
+    }
 
-       public void clearSearch()
-       {
-            searchFlight.clear();
-       }
+    /**
+     * use for clear search result in the previous reservation
+     */
+    public void clearSearch()
+    {
+        searchFlight.clear();
+    }
     
 }

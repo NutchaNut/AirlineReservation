@@ -1,3 +1,11 @@
+/**
+ * Menu
+ * 
+ *      this class is keeping the main function
+ *      and can choose the menu to operate with system functional.
+ * 
+ *      Created by Nutcha Suwannayik (Nut) ID 59070501021
+ */
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -75,7 +83,7 @@ public class Menu
                     noPassenger = in.nextInt();
                     System.out.println(noPassenger);
                     searchFlight = flightManager.searchFlight(originLocation,destinationLocation,date,noPassenger);         //search flight
-                    
+
                     if(searchFlight == null)
                     {
                         break;
@@ -111,74 +119,5 @@ public class Menu
         
     }
 
-    // protected static int getOneInteger(String prompt)
-    //    {
-    //    int value = 0;	   
-    //    String inputString;
-    //    int readBytes = 0;
-    //    byte buffer[] = new byte[200]; 
-    //    System.out.print(prompt);
-    //    try
-    //        {
-    //        readBytes = System.in.read(buffer,0,200);
-	//    }
-    //    catch (IOException ioe)
-    //        {
-	//    System.out.println("Input/output exception - Exiting");
-	//    System.exit(1);
-    //        }
-    //    inputString = new String(buffer);
-    //    try 
-    //        {
-	//    /* modify to work for both Windows and Linux */
-	//    int pos = inputString.indexOf("\r");
-	//    if (pos <= 0)
-	//        pos = inputString.indexOf("\n");
-    //        if (pos > 0)
-	//       inputString = inputString.substring(0,pos);
-    //        value = Integer.parseInt(inputString);
-	//    }
-    //    catch (NumberFormatException nfe) 
-    //        {
-	//    System.out.println("Bad number entered - Exiting");
-	//    System.exit(1);
-    //        }
-    //    return value;
-    //    }
-
-    //    protected static String getString(String prompt)
-    //    {
-    //    int value = 0;	   
-    //    String inputString;
-    //    int readBytes = 0;
-    //    byte buffer[] = new byte[200]; 
-    //    System.out.print(prompt);
-    //    try
-    //        {
-    //        readBytes = System.in.read(buffer,0,200);
-	//    }
-    //    catch (IOException ioe)
-    //        {
-	//    System.out.println("Input/output exception - Exiting");
-	//    System.exit(1);
-    //        }
-    //    inputString = new String(buffer);
-    //    try 
-    //        {
-	//    /* modify to work for both Windows and Linux */
-	//    int pos = inputString.indexOf("\r");
-	//    if (pos <= 0)
-	//        pos = inputString.indexOf("\n");
-    //        if (pos > 0)
-	//       inputString = inputString.substring(0,pos);
-    //        //value = Integer.parseInt(inputString);
-	//    }
-    //    catch (NumberFormatException nfe) 
-    //        {
-	//    System.out.println("Bad number entered - Exiting");
-	//    System.exit(1);
-    //        }
-    //    return inputString;
-    //    }
     
 }
