@@ -4,12 +4,12 @@ import java.util.*;
 public class FlightManager 
 {
 
-    String flightFile = "flight.txt";
-    String scheduleFile = "scheduleFile.txt";
+    private String flightFile = "flight.txt";
+    private String scheduleFile = "scheduleFile.txt";
     private ArrayList<Flight> allFlight = new ArrayList<Flight>();
     private ArrayList<ScheduleFlight> allSchedule = new ArrayList<ScheduleFlight>();
-    ArrayList<OperateFlight> searchFlight = new ArrayList<OperateFlight>();
-    String[] weekDay = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+    private ArrayList<OperateFlight> searchFlight = new ArrayList<OperateFlight>();
+    private String[] weekDay = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
     
     public void initialize() 
     {
@@ -88,22 +88,13 @@ public class FlightManager
                                         gotFlight = new OperateFlight(flight, date, schedule, null,null,false);
                                         searchFlight.add(gotFlight);
                                     }
-                                    // else
-                                    // {
-                                    //     System.out.println("Please search for flights at least 1 day in advance before traveling.");
-                                    // }
+                                    
                                 }
                             }
-                            // else
-                            // {
-                            //     System.out.println("Sorry,we don't have any flights traveling on this day.");
-                            // }
+                            
                         }
                     }
-                    // else
-                    // {
-                    //     System.out.println("Sorry,we don't have any flights that have enought seats for you.");
-                    // }
+                    
                     
                 }
                 else if(origin.equals(allFlight.get(i).getOrigin()))
@@ -161,23 +152,14 @@ public class FlightManager
                                             gotFlight = new OperateFlight(flight, date,scheduleFlight ,scheduleTransit ,transit,true);
                                             searchFlight.add(gotFlight);
                                         }
-                                        // else
-                                        // {
-                                        //     System.out.println("Sorry,we don't have any flights for your traveling");
-                                        // }
+                                       
                                     }
-                                    // else
-                                    // {
-                                    //     System.out.println("Please search for flights at least 1 day in advance before traveling.");
-                                    // }
+                                  
                                 }
                                 
                                 
                             }
-                            // else
-                            // {
-                            //     System.out.println("Sorry,we don't have any flights that have enought seats for you.");
-                            // }
+                            
                         }
                 }
             }
@@ -192,7 +174,7 @@ public class FlightManager
            OperateFlight flight = null;
            Scanner input = new Scanner(System.in);
            printFlight(searchFlight);
-
+            System.out.println();
            System.out.print("Type No of flight to mak reservation[0 is don't want to select any flight]: ");
            int  chooseFlight = input.nextInt();
 

@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ScheduleFlight extends TextFileReader {
+public class ScheduleFlight{
     private String flightId;
     private ArrayList<String> day = new ArrayList<String>();
     private Date departureTime = new Date();
