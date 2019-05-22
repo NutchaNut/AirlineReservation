@@ -50,6 +50,17 @@ public class Menu
                     destinationLocation = ch.nextLine();
                     System.out.print("Enter your traveling date inform[dd/mm/yyyy] : ");                        //get date
                     String tempDate = ch.nextLine();
+
+                    String checkDate[] = tempDate.split("/");
+                    int day = Integer.parseInt(checkDate[0]);
+                    int month = Integer.parseInt(checkDate[1]);
+                    
+                    if((31<day) || (12<month))
+                    {
+                        System.out.println("Your itinerary date is impossible");
+                        break;
+                    }
+
                     try                                                                                         
                     {
                         date = df.parse(tempDate);                                                              //try parse string to date
@@ -59,10 +70,12 @@ public class Menu
                         // TODO Auto-generated catch block
                         error.printStackTrace();
                     }
+                    
                     System.out.print("Enter number of passenger : ");                                           //get number of passenger
                     noPassenger = in.nextInt();
                     System.out.println(noPassenger);
                     searchFlight = flightManager.searchFlight(originLocation,destinationLocation,date,noPassenger);         //search flight
+                    
                     if(searchFlight == null)
                     {
                         break;
