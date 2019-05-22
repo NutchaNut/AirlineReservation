@@ -12,14 +12,16 @@ public class Reservation{
     private ArrayList<Passenger> passengers;
     private int totalPrice;
 
-    Reservation(String reservationId,OperateFlight flight, int noPassenger){
+    Reservation(String reservationId,OperateFlight flight, int noPassenger)
+    {
         this.reservationId = reservationId;
         this.selectedFlight = flight;
         this.numberOfPassenger = noPassenger;
     }
 
     
-    public void addPassenger(){
+    public void addPassenger()
+    {
 
         String name;
         String lastName;
