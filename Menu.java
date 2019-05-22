@@ -95,8 +95,7 @@ public class Menu
 
         }while(selectMenu != 0);
         
-        in.close();
-        ch.close();
+        
     }
 
     // protected static int getOneInteger(String prompt)

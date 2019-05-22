@@ -1,8 +1,12 @@
 import java.io.*;
 
 /**
- * This class encapsulates the weird Java file IO to give students
- * a way to read text files line by line that looks more like C
+ * TextFlieReader
+ *  	
+ * 		This class is for read the text flie into the system.
+ * 		
+ * 		Modified by Preyapach Tanathipchaicharoen (JJ) ID 59070501089
+ * 		,18 April 2019
  */
 public class TextFileReader
 {

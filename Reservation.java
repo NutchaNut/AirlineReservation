@@ -63,7 +63,7 @@ public class Reservation
             Passenger passenger = new Passenger(name, lastName, passportId, birthday, gender, phoneNumber, email);          //create passenger
             passengers.add(passenger);                                                              //add passenger to arraylist
 
-            str.close();
+            
         }
 
     }
