@@ -4,14 +4,18 @@ import java.util.Iterator;
 import java.util.Scanner;
 import java.util.List;
 
-public class ReservationManager{
+public class ReservationManager
+{
     private ArrayList<Reservation> allReservations;
 
-     public Reservation searchById(String reservationId){
+     public Reservation searchById(String reservationId)
+     {
         Iterator iter = allReservations.iterator();
-        while (iter.hasNext()) {
+        while (iter.hasNext()) 
+        {
             Reservation object = (Reservation)iter.next();
-            if(object.getReservationId().equals(reservationId)){
+            if(object.getReservationId().equals(reservationId))
+            {
                 return object;
             }
         }
@@ -19,14 +23,17 @@ public class ReservationManager{
         
     }
 
-    public boolean cancelReservation(String reservationId){
+    public boolean cancelReservation(String reservationId)
+    {
 
         Scanner in = new Scanner(System.in);
 
         Iterator iter = allReservations.iterator();
-        while (iter.hasNext()) {
+        while (iter.hasNext()) 
+        {
             Reservation object = (Reservation)iter.next();
-            if(object.getReservationId().equals(reservationId)){
+            if(object.getReservationId().equals(reservationId))
+            {
                 object.printIniterary();
                 System.out.println("---------------------------------------------------------");
                 System.out.println("Do you want to cancel this reservation?[y/n] :");
@@ -42,27 +49,34 @@ public class ReservationManager{
         return false;
     }
 
-    public void showReservation(String reservationId){
+    public void showReservation(String reservationId)
+    {
         Reservation reservation = searchById(reservationId);
-        if(reservation != null){
+        if(reservation != null)
+        {
             reservation.printIniterary();
             //return true;
-        }else{
+        }
+        else
+        {
             System.out.println("Not Found Reservation");
             //return false;
         }
     }
 
-    public boolean saveReservation(Reservation reservation){
+    public boolean saveReservation(Reservation reservation)
+    {
 
-        if(allReservations.add(reservation)){
+        if(allReservations.add(reservation))
+        {
             return true;
         }
         return false;
 
     }
 
-    public void createReservation(OperateFlight flight, int noPassenger){
+    public void createReservation(OperateFlight flight, int noPassenger)
+    {
 
         String reservationId = generateId();
         System.out.println(reservationId);
@@ -76,23 +90,28 @@ public class ReservationManager{
 
         System.out.println("Do you want to confirm reservation?[y/n] : ");
         String ans = in.nextLine();
-        if(ans.equals("y")){
-            if(saveReservation(reservation)){
+        if(ans.equals("y"))
+        {
+            if(saveReservation(reservation))
+            {
                 System.out.println("Success!");
             }
-            else{
+            else
+            {
                 System.out.println("Fail");
             }
         }
 
     }
 
-    String generateId(){
+    String generateId()
+    {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";
 
         StringBuilder sb = new StringBuilder(6); 
   
-        for (int i = 0; i < 6; i++) { 
+        for (int i = 0; i < 6; i++) 
+        { 
 
             int index = (int)(AlphaNumericString.length() * Math.random()); 
   

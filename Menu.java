@@ -2,15 +2,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Menu {
-        private static Reservation reserve;
-        private static String originLocation;
-        private static String destinationLocation;
-        private static Date date;
-        private static int noPassenger;
+public class Menu 
+{
+    private static Reservation reserve;
+    private static String originLocation;
+    private static String destinationLocation;
+    private static Date date;
+    private static int noPassenger;
 
-        private static ReservationManager allReservation = null;
-    
+    private static ReservationManager allReservation = null;
+    private static FlightManager flightManager = new FlightManager();
+    private static ReservationManager reservationManager = new ReservationManager();
 
     public static void main(String[] args) 
     {
@@ -19,8 +21,7 @@ public class Menu {
         int selectMenu = 0;
         String id;
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        FlightManager flightManager = new FlightManager();
-        ReservationManager reservationManager = new ReservationManager();
+    
         OperateFlight selectFlight = null;
         ArrayList<OperateFlight> searchFlight = new ArrayList<OperateFlight>();
 
@@ -89,14 +90,14 @@ public class Menu {
                     id = ch.nextLine();
                     allReservation.cancelReservation(id);
                     break;
-            }
+                }
 
             System.out.println("------------------------------------------");
 
         }while(selectMenu != 0);
-        
+            
         in.close();
         ch.close();
     }
-    
+        
 }

@@ -4,7 +4,7 @@ public class OperateFlight
 {
     private Flight flight = null;
     private Date itineraryDate = new Date();
-    private ScheduleFlight flightDetial = null;
+    private ScheduleFlight flightDetail = null;
     private ScheduleFlight transitDetail =null;
     private Flight transitFlight;
     private boolean checkTransit;
@@ -15,7 +15,7 @@ public class OperateFlight
 
             this.flight = flight;
             this.itineraryDate = date;
-            this.flightDetial = flightDetail;
+            this.flightDetail = flightDetail;
             this.transitDetail = transitDetail;
             this.transitFlight = transit;
             this.checkTransit = checkTransit;
