@@ -94,8 +94,19 @@ public class Reservation
      */
     public void calculatePrice()
     {
+        int cost;
         /*get price of flight*/
-        int cost = selectedFlight.getFlight().getPrice();                                           
+        if (selectedFlight.isTransit()) 
+        {
+            /*if this itinerary has to transit calculate include the transit price */
+            cost = selectedFlight.getFlight().getPrice() + selectedFlight.getTransitFlight().getPrice();
+        }
+        else
+        {
+            cost = selectedFlight.getFlight().getPrice();
+        }
+           
+        /*set totalPrice of this itinerary */
         totalPrice = cost * numberOfPassenger;                                                      
     }
 
