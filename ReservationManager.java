@@ -1,49 +1,71 @@
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.List;
 
+/*
+ * ReservationManager
+ * 
+ *      This class is use for managing reservation 
+ *      have create reservation, save reservation, search reservation and cancel reservation
+ *      
+ *      Created by Nutcha Suwannayik (Nut) 59070501021
+ *      18 April 2019
+ */
+
 public class ReservationManager
 {
-    private ArrayList<Reservation> allReservations;                                     //store all reservation
+    /*store all reservation */                                                        
+    private ArrayList<Reservation> allReservations;
 
-    //use to search reservation by id and return reservation
+     /*
+     * searchById method use for search reservation by id
+     * @param  reservationId   String of reservationId to identify reservation
+     * @return Reservation object
+     */
      public Reservation searchById(String reservationId)
      {
-        Iterator iter = allReservations.iterator();                                      //loop to find id
+        Iterator iter = allReservations.iterator();                                      
         while (iter.hasNext()) 
         {
             Reservation object = (Reservation)iter.next();
-            if(object.getReservationId().equals(reservationId))                         //if found reservation
+            if(object.getReservationId().equals(reservationId))                         
             {
-                return object;                                                          //return reservation
+                return object;                                                          
             }
         }
         return null;
         
     }
 
-    //use to delete reservation 
+    /*
+     * cancelReservation method use for delete reservation
+     * @param  reservationId   String of reservationId to identify reservation
+     * @return boolean of cancel success 
+     */    
     public boolean cancelReservation(String reservationId){
 
         Scanner in = new Scanner(System.in);
 
-        //search reservation by iterator
+        /*search reservation by iterator*/
         Iterator iter = allReservations.iterator();                                                     
         while (iter.hasNext()) 
         {
             Reservation object = (Reservation)iter.next();
-            if(object.getReservationId().equals(reservationId))                                         //if found reservation
+            /**if found reservation */
+            if(object.getReservationId().equals(reservationId))                                         
             {
-                object.printIniterary();                                                                //print reservation detail
+                /**print reservation detail */
+                object.printIniterary();                                        
+                /**get input to confirm reservation */                        
                 System.out.println("---------------------------------------------------------");
                 System.out.println("Do you want to cancel this reservation?[y/n] :");
-                String ans = in.nextLine();                                                             //get input to confirm reservation
+                String ans = in.nextLine();                                                             
                 in.close();
-                if(ans.equals("y"))                                                                     //check input
+                if(ans.equals("y"))                                                                     
                 {
-                    iter.remove();                                                                      //delete reservation
+                    /**delete reservation */
+                    iter.remove();                                                                      
                     System.out.println("cancel success");
                     return true;
                 }else
@@ -53,55 +75,71 @@ public class ReservationManager
                 }
             }
         }
-        in.close();
         System.out.println("Not Found Reservation");
         return false;
     }
 
-    //use to print reservation detail
+    /*
+     * showReservation method use for print reservation detail
+     * @param  reservationId   String of reservationId to identify reservation
+     */ 
     public void showReservation(String reservationId)
     {
-        Reservation reservation = searchById(reservationId);                                    //search reservation by id
-        if(reservation != null)                                                                 //if found reservation
+        /** search reservation by id*/
+        Reservation reservation = searchById(reservationId);                                    
+        if(reservation != null)                                                                 
         {
-            reservation.printIniterary();                                                       //print reservation detail
+            reservation.printIniterary();                                                       
         }else
         {
-            System.out.println("Not Found Reservation");                                        //not found reservation
+            System.out.println("Not Found Reservation");                                        
         }
     }
 
-    //use to add reservation to arraylist
+    /*
+     * saveReservation method use for add reservation to arraylist
+     * @param  reservation  object of reservation 
+     */ 
     public boolean saveReservation(Reservation reservation)
     {
-
-        if(allReservations.add(reservation))                                                    //add reservation to arraylist
+        /** add reservation to arraylist */
+        if(allReservations.add(reservation))                                                   
         {
-            return true;                                                                        //success
+            return true;                                                                        
         }
-        return false;                                                                           //fail
+        return false;                                                                           
 
     }
 
-    //use to create reservation
+    /*
+     * createReservation method use for create reservation
+     * @param  flight  object of selected flight
+     * @param  noPassenger integer of passenger
+     */ 
     public void createReservation(OperateFlight flight, int noPassenger)
     {
+        /** generate reservation id */
+        String reservationId = generateId();                                                    
 
-        String reservationId = generateId();                                                    //generate reservation id
-
-        Reservation reservation = new Reservation(reservationId,flight, noPassenger);           //create reservation
-        reservation.addPassenger();                                                             //add passenger
-        reservation.calculatePrice();                                                           //calculate price
-        reservation.printIniterary();                                                           //print reservation detail
+        /** create reservation */
+        Reservation reservation = new Reservation(reservationId,flight, noPassenger);
+        /** add passenger */
+        reservation.addPassenger();                                                            
+        /** calculate price */
+        reservation.calculatePrice();                                                           
+        /** print reservation detail */
+        reservation.printIniterary();                                                          
 
         Scanner in = new Scanner(System.in);
 
+        /** ask to confirm reservation*/
         System.out.println("------------------------------------------------------");
-        System.out.println("Do you want to confirm reservation?[y/n] : ");                      //ask confirm reservation
+        System.out.println("Do you want to confirm reservation?[y/n] : ");
         String ans = in.nextLine();
-        if(ans.equals("y"))                                                                     //if confirm
+        if(ans.equals("y"))                                                                     
         {
-            if(saveReservation(reservation))                                                    //if save reservation success
+            /**save reservation */
+            if(saveReservation(reservation))                                                    
             {
                 System.out.println("Success!");
             }
@@ -116,19 +154,23 @@ public class ReservationManager
 
     }
 
-    //use to generate reservation id
+    /*
+     * generateId method use for generate reservation id
+     * @return String of id
+     */ 
     private String generateId()
     {
-        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";                //key to generate
+        /**key for generate */
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";                
 
         StringBuilder sb = new StringBuilder(6); 
   
-        for (int i = 0; i < 6; i++)                                                             //generate 6 key in 1 id
+        for (int i = 0; i < 6; i++)                                                             
         { 
             int index = (int)(AlphaNumericString.length() * Math.random()); 
             sb.append(AlphaNumericString.charAt(index)); 
         } 
-        return sb.toString();                                                                   //return id
+        return sb.toString();                                                                  
     }
     
 }

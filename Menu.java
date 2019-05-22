@@ -3,52 +3,79 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.*;
 
+/*
+ * Menu
+ * 
+ *      This is main class for running program
+ *      
+ *      Created by Nutcha Suwannayik (Nut) 59070501021
+ *      18 April 2019
+ */
+
 public class Menu 
 {
+    /*store string of originLocation */                                                        
     private static String originLocation;
+    /*store string of destinationLocation */                                                        
     private static String destinationLocation;
+    /*store date to search flight */                                                        
     private static Date date;
+    /*store integer of passenger */                                                        
     private static int noPassenger;
-    private static ReservationManager allReservation = null;
+    /*instance of ReservationManager*/                                                        
 
     public static void main(String[] args) 
     {
+        /*scanner for input data*/                                                        
         Scanner ch = new Scanner(System.in);
         Scanner in = new Scanner(System.in);
+        /*selectMenu for choose menu*/                                                        
         int selectMenu = 0;
         String id;
+        /*date input format*/                                                        
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        /*instance of FlightManager*/                                                        
         FlightManager flightManager = new FlightManager();
+        /*instance of ReservationManager*/                                                        
         ReservationManager reservationManager = new ReservationManager();
+        /*instance of OperateFlight use for selectedFlight*/                                                        
         OperateFlight selectFlight = null;
+        /*Arraylist of searched flight*/                                                        
         ArrayList<OperateFlight> searchFlight = new ArrayList<OperateFlight>();
 
+        /**innitialize flight */
         flightManager.initialize();
 
+        /**Loop menu */
         System.out.println("welcome to airline reservation program");
-        do                                                                                                      //loop of menu
+        do                                                                                                      
         {
-            System.out.println("---------------------------------------");                                      //print menu
+            System.out.println("---------------------------------------");                                      
             System.out.println("menu : ");
             System.out.println("1 Search Flight");
             System.out.println("2 Search Reservation");
             System.out.println("3 Cancl Reservation");
             System.out.println("0 Exit");
             System.out.println("---------------------------------------");
-            System.out.print("Enter menu : ");                                                                  //get select menu
+            System.out.print("Enter menu : ");                                                                  
             selectMenu = in.nextInt();
             System.out.flush();
-
+            /**choose menu */
             switch (selectMenu)                                                                                 
             {
-                case 1:                                                                                         //menu 1 : search flight
+                /**menu 1 : search flight */
+                case 1:                                                                                         
                     flightManager.clearSearch();
-                    System.out.print("Enter your origin location : ");                                          //get origin location
+                    /** get origin location */
+                    System.out.print("Enter your origin location : ");                                          
                     originLocation = ch.nextLine();
 
-                    System.out.print("Enter your destination location : ");                                     //get destination location
+                    /** get destination location */
+                    System.out.print("Enter your destination location : ");                                     
                     destinationLocation = ch.nextLine();
-                    System.out.print("Enter your traveling date inform[dd/mm/yyyy] : ");                        //get date
+
+                    /** get date */
+                    System.out.print("Enter your traveling date inform[dd/mm/yyyy] : ");                        
                     String tempDate = ch.nextLine();
 
                     String checkDate[] = tempDate.split("/");
@@ -61,9 +88,10 @@ public class Menu
                         break;
                     }
 
+                    /**try parse string to date */
                     try                                                                                         
                     {
-                        date = df.parse(tempDate);                                                              //try parse string to date
+                        date = df.parse(tempDate);                                                              
                     }  
                     catch (ParseException error) 
                     {
@@ -71,36 +99,46 @@ public class Menu
                         error.printStackTrace();
                     }
                     
-                    System.out.print("Enter number of passenger : ");                                           //get number of passenger
+                    /**get number of passenger */
+                    System.out.print("Enter number of passenger : ");                                           
                     noPassenger = in.nextInt();
                     System.out.println(noPassenger);
-                    searchFlight = flightManager.searchFlight(originLocation,destinationLocation,date,noPassenger);         //search flight
+                    /**search flight */
+                    searchFlight = flightManager.searchFlight(originLocation,destinationLocation,date,noPassenger);         
                     
                     if(searchFlight == null)
                     {
                         break;
                     }
 
-                    selectFlight = flightManager.selectFlight();                                                //get selected flight
+                    /**get selected flight*/
+                    selectFlight = flightManager.selectFlight();                                                
 
                     if(selectFlight == null)
                     {
                         break;
                     }
 
-                    reservationManager.createReservation(selectFlight, noPassenger);                            //create reservation
+                    /**create reservation*/
+                    reservationManager.createReservation(selectFlight, noPassenger);                            
                     break;
+                /** menu 2 : search reservation */
                 case 2 : 
-                    System.out.println("----------- Search Reservation -----------");                           //menu 2 : search reservation
-                    System.out.println("Enter Reservation id : ");                                              //get input reservation id
-                    id = ch.nextLine();                                                 
-                    allReservation.showReservation(id);                                                         //search and show reservation
+                    System.out.println("----------- Search Reservation -----------"); 
+                    /**get input reservation id */                         
+                    System.out.println("Enter Reservation id : ");                                              
+                    id = ch.nextLine();              
+                    /**search and show reservation */                                   
+                    reservationManager.showReservation(id);                                                         
                     break;
+                /*menu 3 : cancel reservation*/
                 case 3 :                                                                
-                    System.out.println("----------- Cancl Reservation -----------");                            //menu 3 : cancel reservation
-                    System.out.println("Enter Reservation id : ");                                              //get input reservation id
+                    System.out.println("----------- Cancl Reservation -----------");   
+                    /*get input reservation id*/                      
+                    System.out.println("Enter Reservation id : ");                                             
                     id = ch.nextLine();
-                    boolean cancel = allReservation.cancelReservation(id);                                      //search and cancel reservation
+                    /**search and cancel reservation */
+                    boolean cancel = reservationManager.cancelReservation(id);                                      
                     break;
             }
 
@@ -110,75 +148,5 @@ public class Menu
         
         
     }
-
-    // protected static int getOneInteger(String prompt)
-    //    {
-    //    int value = 0;	   
-    //    String inputString;
-    //    int readBytes = 0;
-    //    byte buffer[] = new byte[200]; 
-    //    System.out.print(prompt);
-    //    try
-    //        {
-    //        readBytes = System.in.read(buffer,0,200);
-	//    }
-    //    catch (IOException ioe)
-    //        {
-	//    System.out.println("Input/output exception - Exiting");
-	//    System.exit(1);
-    //        }
-    //    inputString = new String(buffer);
-    //    try 
-    //        {
-	//    /* modify to work for both Windows and Linux */
-	//    int pos = inputString.indexOf("\r");
-	//    if (pos <= 0)
-	//        pos = inputString.indexOf("\n");
-    //        if (pos > 0)
-	//       inputString = inputString.substring(0,pos);
-    //        value = Integer.parseInt(inputString);
-	//    }
-    //    catch (NumberFormatException nfe) 
-    //        {
-	//    System.out.println("Bad number entered - Exiting");
-	//    System.exit(1);
-    //        }
-    //    return value;
-    //    }
-
-    //    protected static String getString(String prompt)
-    //    {
-    //    int value = 0;	   
-    //    String inputString;
-    //    int readBytes = 0;
-    //    byte buffer[] = new byte[200]; 
-    //    System.out.print(prompt);
-    //    try
-    //        {
-    //        readBytes = System.in.read(buffer,0,200);
-	//    }
-    //    catch (IOException ioe)
-    //        {
-	//    System.out.println("Input/output exception - Exiting");
-	//    System.exit(1);
-    //        }
-    //    inputString = new String(buffer);
-    //    try 
-    //        {
-	//    /* modify to work for both Windows and Linux */
-	//    int pos = inputString.indexOf("\r");
-	//    if (pos <= 0)
-	//        pos = inputString.indexOf("\n");
-    //        if (pos > 0)
-	//       inputString = inputString.substring(0,pos);
-    //        //value = Integer.parseInt(inputString);
-	//    }
-    //    catch (NumberFormatException nfe) 
-    //        {
-	//    System.out.println("Bad number entered - Exiting");
-	//    System.exit(1);
-    //        }
-    //    return inputString;
-    //    }
     
 }

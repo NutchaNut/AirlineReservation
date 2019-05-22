@@ -1,17 +1,39 @@
-import java.util.Date;
-
+/*
+ * Passenger
+ * 
+ *      This class is creating for instance of passenger
+ *      collect passenger detail
+ *      
+ *      Created by Nutcha Suwannayik (Nut) 59070501021
+ *      18 April 2019
+ */
 public class Passenger
 {
-    //data for passenger
-    private String name;
-    private String lastName;
-    private String passportId;
-    private String birthday;
-    private String gender;
-    private String phoneNumber;
-    private String email;
+     /*store Passenger name */
+     private String name;
+     /*store Passenger lastName */
+     private String lastName;
+     /*store Passenger passportId */
+     private String passportId;
+     /*store Passenger birthday */
+     private String birthday;
+     /*store Passenger gender */
+     private String gender;
+     /*store Passenger phoneNumber */
+     private String phoneNumber;
+     /*store Passenger email */
+     private String email;
 
-    //constructor
+    /**
+    * Construtor to create instance of Passenger.
+    * @param  name   Passenger name
+    * @param  lastName   Passenger lastName
+    * @param  passportId   Passenger passportId
+    * @param  birthday   Passenger birthday
+    * @param  gender   Passenger gender
+    * @param  phoneNumber   Passenger phoneNumber
+    * @param  email   Passenger email
+     */
     Passenger(String name, String lastName,String passportId, String birthday, String gender, String phoneNumber, String email)
     {
         this.name = name;
@@ -23,8 +45,9 @@ public class Passenger
         this.email = email;
     }
 
-    //print passenger
-    public void printPassenger()
+    /**
+     * Print Passenger information
+     */    public void printPassenger()
     {
         System.out.println("Name : " + name);
         System.out.println("Lastname : " + lastName);

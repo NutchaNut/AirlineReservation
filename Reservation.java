@@ -3,16 +3,35 @@ import java.util.Scanner;
 import java.util.Iterator;
 import java.io.*;
 
+/*
+ * Reservation
+ * 
+ *      This class is creating for instance of Reservation
+ *      collect Reservation detail, add passenger, calculate price
+ *      
+ *      Created by Nutcha Suwannayik (Nut) 59070501021
+ *      18 April 2019
+ */
 
 public class Reservation
 {
-    private String reservationId;                                                           
-    private int numberOfPassenger;
-    private OperateFlight selectedFlight;
-    private ArrayList<Passenger> passengers;
-    private int totalPrice;
-
-    //constructor
+     /*store reservationId for identify reservation */
+     private String reservationId;   
+     /*store number of passenger */                                                        
+     private int numberOfPassenger;
+     /*store selectedFlight that have flight detail */                                                        
+     private OperateFlight selectedFlight;
+     /*store list of passenger */                                                        
+     private ArrayList<Passenger> passengers;
+     /*store totalPrice */                                                        
+     private int totalPrice;
+ 
+     /**
+     * Construtor to create instance of Reservation.
+     * @param  reservationId   String of reservationId to identify reservation
+     * @param  flight   OperateFlight flight keep selected flight
+     * @param  noPassenger   number of passenger
+      */
     Reservation(String reservationId,OperateFlight flight, int noPassenger)
     {
         this.reservationId = reservationId;
@@ -20,7 +39,9 @@ public class Reservation
         this.numberOfPassenger = noPassenger;
     }
 
-    
+    /*
+     * addPassenger method use for create instance of Passenger
+     */
     public void addPassenger()
     {
         Scanner in = new Scanner(System.in);
@@ -32,114 +53,93 @@ public class Reservation
         String phoneNumber;
         String email;
 
-        for(int i = 1; i <= numberOfPassenger; i++)                                                 //loop for fill in data of passenger
+        /*loop for fill in data of passenger*/
+        for(int i = 1; i <= numberOfPassenger; i++)                                                 
         {
             System.out.println("Passenger : " + i);
 
             Scanner str = new Scanner(System.in);
             str.nextLine();
 
-            System.out.print("Name : ");                                                            //get name
+            System.out.print("Name : ");                                                            
             name = str.nextLine();
 
-            System.out.print("LastName : ");                                                        //get last name
+            System.out.print("LastName : ");                                                        
             lastName = str.nextLine();
 
-            System.out.print("passport ID : ");                                                     //get passport id
+            System.out.print("passport ID : ");                                                    
             passportId = str.nextLine();
 
-            System.out.print("Birthday(dd/mm/yyyy) : ");                                            //get birthday
+            System.out.print("Birthday(dd/mm/yyyy) : ");                                            
             birthday = str.nextLine();
 
-            System.out.print("Gender(Male/Female) : ");                                             //get gender
+            System.out.print("Gender(Male/Female) : ");                                             
             gender = str.nextLine();
 
-            System.out.print("Phone Number : ");                                                    //get phone number
+            System.out.print("Phone Number : ");                                                    
             phoneNumber = str.nextLine();
 
-            System.out.print("Email : ");                                                           //get email
+            System.out.print("Email : ");                                                           
             email = str.nextLine();
 
-            Passenger passenger = new Passenger(name, lastName, passportId, birthday, gender, phoneNumber, email);          //create passenger
-            passengers.add(passenger);                                                              //add passenger to arraylist
-
-            
+            /*create instance of Passenger and add to arraylist */
+            Passenger passenger = new Passenger(name, lastName, passportId, birthday, gender, phoneNumber, email);          
+            passengers.add(passenger);                                                              
         }
 
     }
 
-    //use to calculate price
+   /*
+     * calculatePrice method use for calculate total price 
+     */
     public void calculatePrice()
     {
-        int cost = selectedFlight.getFlight().getPrice();                                           //get price of flight
-        totalPrice = cost * numberOfPassenger;                                                      //calculate price
+        /*get price of flight*/
+        int cost = selectedFlight.getFlight().getPrice();                                           
+        totalPrice = cost * numberOfPassenger;                                                      
     }
 
-    //use to print reservation detail
+    /*
+     * printIniterary method use for print reservation detail
+     */
     public void printIniterary()
     {
-        System.out.println("Reservation Id : " + reservationId);                                    //print reservation id
+        /*print reservation detail */
+        System.out.println("Reservation Id : " + reservationId);                                   
 
-        System.out.println("Flight Detail : ");                                                     //print flight
-        if(selectedFlight.isTransit())                                                              //check flight transit
+        /*print flight detail */
+        System.out.println("Flight Detail : ");                                                     
+        if(selectedFlight.isTransit())                                                              
         {
-            selectedFlight.printFlight();                                                           //print flight and transit flight
+            selectedFlight.printFlight();                                                           
             selectedFlight.printTransitFlight();
         }else
         {
-            selectedFlight.printFlight();                                                           //print flight
+            selectedFlight.printFlight();                                                           
         }
-       
-        System.out.println("Passenger : ");                                                         //print all passenger 
-        Iterator iter = passengers.iterator();                                                      //loop for print passenger from arraylist
+
+        /*print all passenger detail */
+        System.out.println("Passenger : ");                                                          
+        Iterator iter = passengers.iterator();                                                      
         while (iter.hasNext()) 
         {
             Passenger object = (Passenger)iter.next();
             object.printPassenger();
         }
 
-        System.out.println("Total Price : " + totalPrice);                                          //print price
+        /*print price */
+        System.out.println("Total Price : " + totalPrice);                                         
 
     }
 
+     /**
+     * get Reservation Id
+     * @return string of reservation id
+     */
     //use to get reservation id
     public String getReservationId()                                                                
     {
         return reservationId;
     }
 
-    // protected static String getString(String prompt)
-    //    {
-    //    int value = 0;	   
-    //    String inputString;
-    //    int readBytes = 0;
-    //    byte buffer[] = new byte[200]; 
-    //    System.out.println(prompt);
-    //    try
-    //        {
-    //        readBytes = System.in.read(buffer,0,200);
-	//    }
-    //    catch (IOException ioe)
-    //        {
-	//    System.out.println("Input/output exception - Exiting");
-	//    System.exit(1);
-    //        }
-    //    inputString = new String(buffer);
-    //    try 
-    //        {
-	//    /* modify to work for both Windows and Linux */
-	//    int pos = inputString.indexOf("\r");
-	//    if (pos <= 0)
-	//        pos = inputString.indexOf("\n");
-    //        if (pos > 0)
-	//       inputString = inputString.substring(0,pos);
-    //        //value = Integer.parseInt(inputString);
-	//    }
-    //    catch (NumberFormatException nfe) 
-    //        {
-	//    System.out.println("Bad number entered - Exiting");
-	//    System.exit(1);
-    //        }
-    //    return inputString;
-    //    }
 }
