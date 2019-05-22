@@ -3,13 +3,13 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.*;
 
-public class Menu {
-        private static String originLocation;
-        private static String destinationLocation;
-        private static Date date;
-        private static int noPassenger;
-
-        private static ReservationManager allReservation = null;
+public class Menu 
+{
+    private static String originLocation;
+    private static String destinationLocation;
+    private static Date date;
+    private static int noPassenger;
+    private static ReservationManager allReservation = null;
 
     public static void main(String[] args) 
     {
@@ -26,75 +26,68 @@ public class Menu {
         flightManager.initialize();
 
         System.out.println("welcome to airline reservation program");
-        do 
+        do                                                                                                      //loop of menu
         {
-            System.out.println("---------------------------------------");
+            System.out.println("---------------------------------------");                                      //print menu
             System.out.println("menu : ");
             System.out.println("1 Search Flight");
             System.out.println("2 Search Reservation");
             System.out.println("3 Cancl Reservation");
             System.out.println("0 Exit");
             System.out.println("---------------------------------------");
-            //selectMenu = getOneInteger("Enter menu : ");
-            System.out.print("Enter menu : ");
+            System.out.print("Enter menu : ");                                                                  //get select menu
             selectMenu = in.nextInt();
             System.out.flush();
 
-            switch (selectMenu) 
+            switch (selectMenu)                                                                                 
             {
-                case 1:
+                case 1:                                                                                         //menu 1 : search flight
                     flightManager.clearSearch();
-                    System.out.print("Enter your origin location : ");
+                    System.out.print("Enter your origin location : ");                                          //get origin location
                     originLocation = ch.nextLine();
-                    //originLocation = getString("Enter your origin location : ");
-                    //System.out.println(originLocation);
 
-                    //destinationLocation = getString("Enter your destination location : ");
-                    //System.out.println(destinationLocation);
-                    System.out.print("Enter your destination location : ");
+                    System.out.print("Enter your destination location : ");                                     //get destination location
                     destinationLocation = ch.nextLine();
-                    System.out.print("Enter your traveling date inform[dd/mm/yyyy] : ");
+                    System.out.print("Enter your traveling date inform[dd/mm/yyyy] : ");                        //get date
                     String tempDate = ch.nextLine();
-                    //String tempDate = getString("Enter your traveling date inform[dd/mm/yyyy] : ");
-                    try 
+                    try                                                                                         
                     {
-                        date = df.parse(tempDate);
-                    } 
+                        date = df.parse(tempDate);                                                              //try parse string to date
+                    }  
                     catch (ParseException error) 
                     {
                         // TODO Auto-generated catch block
                         error.printStackTrace();
                     }
-                    System.out.println("Enter number of passenger");
+                    System.out.print("Enter number of passenger : ");                                           //get number of passenger
                     noPassenger = in.nextInt();
-                    //noPassenger = getOneInteger("Enter number of passenger : ");
                     System.out.println(noPassenger);
-                    searchFlight = flightManager.searchFlight(originLocation,destinationLocation,date,noPassenger);
+                    searchFlight = flightManager.searchFlight(originLocation,destinationLocation,date,noPassenger);         //search flight
                     if(searchFlight == null)
                     {
                         break;
                     }
 
-                    selectFlight = flightManager.selectFlight();
+                    selectFlight = flightManager.selectFlight();                                                //get selected flight
 
                     if(selectFlight == null)
                     {
                         break;
                     }
 
-                    reservationManager.createReservation(selectFlight, noPassenger);
+                    reservationManager.createReservation(selectFlight, noPassenger);                            //create reservation
                     break;
                 case 2 : 
-                    System.out.println("----------- Search Reservation -----------");
-                    System.out.println("Enter Reservation id : ");
-                    id = ch.nextLine();
-                    allReservation.showReservation(id);
+                    System.out.println("----------- Search Reservation -----------");                           //menu 2 : search reservation
+                    System.out.println("Enter Reservation id : ");                                              //get input reservation id
+                    id = ch.nextLine();                                                 
+                    allReservation.showReservation(id);                                                         //search and show reservation
                     break;
-                case 3 : 
-                    System.out.println("----------- Cancl Reservation -----------");
-                    System.out.println("Enter Reservation id : ");
+                case 3 :                                                                
+                    System.out.println("----------- Cancl Reservation -----------");                            //menu 3 : cancel reservation
+                    System.out.println("Enter Reservation id : ");                                              //get input reservation id
                     id = ch.nextLine();
-                    allReservation.cancelReservation(id);
+                    boolean cancel = allReservation.cancelReservation(id);                                      //search and cancel reservation
                     break;
             }
 

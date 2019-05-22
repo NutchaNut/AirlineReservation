@@ -4,23 +4,25 @@ import java.util.Iterator;
 import java.io.*;
 
 
-public class Reservation{
-
-    private String reservationId;
+public class Reservation
+{
+    private String reservationId;                                                           
     private int numberOfPassenger;
     private OperateFlight selectedFlight;
     private ArrayList<Passenger> passengers;
     private int totalPrice;
 
-    Reservation(String reservationId,OperateFlight flight, int noPassenger){
+    //constructor
+    Reservation(String reservationId,OperateFlight flight, int noPassenger)
+    {
         this.reservationId = reservationId;
         this.selectedFlight = flight;
         this.numberOfPassenger = noPassenger;
     }
 
     
-    public void addPassenger(){
-
+    public void addPassenger()
+    {
         String name;
         String lastName;
         String passportId;
@@ -29,71 +31,79 @@ public class Reservation{
         String phoneNumber;
         String email;
 
-        for(int i = 1; i <= numberOfPassenger; i++){
+        for(int i = 1; i <= numberOfPassenger; i++)                                                 //loop for fill in data of passenger
+        {
             System.out.println("Passenger : " + i);
 
             Scanner str = new Scanner(System.in);
             str.nextLine();
 
-            //str.reset();
-            //name = getString("Name : ");
-            System.out.print("Name : ");
+            System.out.print("Name : ");                                                            //get name
             name = str.nextLine();
 
-            System.out.print("LastName : ");
-            lastName = str.next();
+            System.out.print("LastName : ");                                                        //get last name
+            lastName = str.nextLine();
 
-            System.out.print("passport ID : ");
-            passportId = str.next();
+            System.out.print("passport ID : ");                                                     //get passport id
+            passportId = str.nextLine();
 
-            System.out.print("Birthday(dd/mm/yyyy) : ");
-            birthday = str.next();
+            System.out.print("Birthday(dd/mm/yyyy) : ");                                            //get birthday
+            birthday = str.nextLine();
 
-            System.out.print("Gender(Male/Female) : ");
-            gender = str.next();
+            System.out.print("Gender(Male/Female) : ");                                             //get gender
+            gender = str.nextLine();
 
-            System.out.print("Phone Number : ");
-            phoneNumber = str.next();
+            System.out.print("Phone Number : ");                                                    //get phone number
+            phoneNumber = str.nextLine();
 
-            System.out.print("Email : ");
-            email = str.next();
+            System.out.print("Email : ");                                                           //get email
+            email = str.nextLine();
 
-            Passenger passenger = new Passenger(name, lastName, passportId, birthday, gender, phoneNumber, email);
-            passengers.add(passenger);
+            Passenger passenger = new Passenger(name, lastName, passportId, birthday, gender, phoneNumber, email);          //create passenger
+            passengers.add(passenger);                                                              //add passenger to arraylist
+
+            str.close();
         }
 
     }
 
-    public void calculatePrice(){
-
-        int cost = selectedFlight.getFlight().getPrice();
-        totalPrice = cost * numberOfPassenger;
-
+    //use to calculate price
+    public void calculatePrice()
+    {
+        int cost = selectedFlight.getFlight().getPrice();                                           //get price of flight
+        totalPrice = cost * numberOfPassenger;                                                      //calculate price
     }
 
-    public void printIniterary(){
+    //use to print reservation detail
+    public void printIniterary()
+    {
+        System.out.println("Reservation Id : " + reservationId);                                    //print reservation id
 
-        //print flight
-        System.out.println("Flight Detail : ");
-        if(selectedFlight.isTransit()){
-            selectedFlight.printFlight();
-        }else{
-            selectedFlight.printFlight();
+        System.out.println("Flight Detail : ");                                                     //print flight
+        if(selectedFlight.isTransit())                                                              //check flight transit
+        {
+            selectedFlight.printFlight();                                                           //print flight and transit flight
             selectedFlight.printTransitFlight();
+        }else
+        {
+            selectedFlight.printFlight();                                                           //print flight
         }
        
-        //print all passenger 
-        System.out.println("Passenger : ");
-        Iterator iter = passengers.iterator();
-        while (iter.hasNext()) {
+        System.out.println("Passenger : ");                                                         //print all passenger 
+        Iterator iter = passengers.iterator();                                                      //loop for print passenger from arraylist
+        while (iter.hasNext()) 
+        {
             Passenger object = (Passenger)iter.next();
             object.printPassenger();
         }
 
+        System.out.println("Total Price : " + totalPrice);                                          //print price
 
     }
 
-    public String getReservationId(){
+    //use to get reservation id
+    public String getReservationId()                                                                
+    {
         return reservationId;
     }
 
