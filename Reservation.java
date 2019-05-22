@@ -9,30 +9,23 @@ public class Reservation{
     //private String originLocation;
     //private String destinationLocation;
     private int numberOfPassenger;
-    //private Date date;
-    //private ArrayList<Flight> searchedFlight;
+  
     private OperateFlight selectedFlight;
     private ArrayList<Passenger> passengers;
     private int totalPrice;
 
-    // Reservation(String origin, String destination, Date date, int noPassenger){
-    //     this.originLocation = origin;
-    //     this.destinationLocation = destination;
-    //     this.date = date;
-    //     this.numberOfPassenger = noPassenger;
-    // }
-
-    Reservation(String reservationId,OperateFlight flight, int noPassenger){
+ 
+    Reservation(String reservationId,OperateFlight flight, int noPassenger)
+    {
         this.reservationId = reservationId;
         this.selectedFlight = flight;
-        //this.date = date;
         this.numberOfPassenger = noPassenger;
     }
 
     
     public void addPassenger(){
 
-        Scanner str = new Scanner(System.in);
+    	Scanner in = new Scanner(System.in);
 
         String name;
         String lastName;
@@ -42,50 +35,64 @@ public class Reservation{
         String phoneNumber;
         String email;
 
-        for(int i = 1; i <= numberOfPassenger; i++){
+        for(int i = 1; i <= numberOfPassenger; i++)
+        {
+        	
             System.out.println("Passenger : " + i);
 
-            System.out.print("Name : ");
-            name = str.nextLine();
+            System.out.println("Name : ");
+            name = in.nextLine();
 
-            System.out.print("LastName : ");
-            lastName = str.nextLine();
+            System.out.println("LastName : ");
+            lastName = in.nextLine();
 
-            System.out.print("passport ID : ");
-            passportId = str.nextLine();
+            System.out.println("passport ID : ");
+            passportId = in.nextLine();
 
-            System.out.print("Birthday(dd/mm/yyyy) : ");
-            birthday = str.nextLine();
+            System.out.println("Birthday(dd/mm/yyyy) : ");
+            birthday = in.nextLine();
 
-            System.out.print("Gender(Male/Female) : ");
-            gender = str.nextLine();
+            System.out.println("Gender(Male/Female) : ");
+            gender = in.nextLine();
 
-            System.out.print("Phone Number : ");
-            phoneNumber = str.nextLine();
+            System.out.println("Phone Number : ");
+            phoneNumber = in.nextLine();
 
-            System.out.print("Email : ");
-            email = str.nextLine();
+            System.out.println("Email : ");
+            email = in.nextLine();
 
             Passenger passenger = new Passenger(name, lastName, passportId, birthday, gender, phoneNumber, email);
             passengers.add(passenger);
         }
-
+        
     }
 
     public void calculatePrice(){
 
         int cost = selectedFlight.getFlight().getPrice();
-        totalPrice = cost * numberOfPassenger;
+        if(selectedFlight.isTransit())
+        {
+        	totalPrice = (cost + selectedFlight.getTransitFlight().getPrice()) * numberOfPassenger;
+        }
+        else
+        {
+        	totalPrice = cost * numberOfPassenger;
+        }
+        
 
     }
 
-    public void printIniterary(){
+    public void printIniterary()
+    {
 
         //print flight
         System.out.println("Flight Detail : ");
-        if(selectedFlight.isTransit()){
+        if(selectedFlight.isTransit())
+        {
             selectedFlight.printFlight();
-        }else{
+        }
+        else
+        {
             selectedFlight.printFlight();
             selectedFlight.printTransitFlight();
         }
@@ -93,7 +100,8 @@ public class Reservation{
         //print all passenger 
         System.out.println("Passenger : ");
         Iterator iter = passengers.iterator();
-        while (iter.hasNext()) {
+        while (iter.hasNext()) 
+        {
             Passenger object = (Passenger)iter.next();
             object.printPassenger();
         }
@@ -101,7 +109,8 @@ public class Reservation{
 
     }
 
-    public String getReservationId(){
+    public String getReservationId()
+    {
         return reservationId;
     }
 }
