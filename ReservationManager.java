@@ -141,6 +141,7 @@ public class ReservationManager
             /**save reservation */
             if(saveReservation(reservation))                                                    
             {
+                flight.getFlight().setTotalAvailableSeat(noPassenger);
                 System.out.println("Success!");
             }
             else
