@@ -1,3 +1,12 @@
+/**
+ * Flight
+ * 
+ *      This class is for creating any instance of flight
+ *      to keep them with the same form of information and get any information from them.
+ * 
+ *      Created by Preyapach Tanathipchaicharoen (JJ) ID 59070501089
+ *      ,18 April 2019
+ */
 public class Flight 
 {
     /*store flight ID inform of string*/

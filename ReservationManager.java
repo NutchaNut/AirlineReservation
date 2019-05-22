@@ -105,7 +105,8 @@ public class ReservationManager
 
     }
 
-    private String generateId(){
+    private String generateId()
+    {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";
 
         StringBuilder sb = new StringBuilder(6); 

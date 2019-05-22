@@ -1,3 +1,13 @@
+/**
+ * FlightManager
+ *      
+ *        This class is usr for manage flight when the user want to
+ *         search and select flight to make reservation.
+ * 
+ *         Created by Preyapach Tanathipchaicharoen (JJ) ID 59070501089
+ *          ,17 May 2019
+ */
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -174,8 +184,8 @@ public class FlightManager
            OperateFlight flight = null;
            Scanner input = new Scanner(System.in);
            printFlight(searchFlight);
-            System.out.println();
-           System.out.print("Type No of flight to mak reservation[0 is don't want to select any flight]: ");
+           
+           System.out.print("Type No of flight to make reservation[0 is don't want to select any flight]: ");
            int  chooseFlight = input.nextInt();
 
            if(chooseFlight == 0)
@@ -204,26 +214,13 @@ public class FlightManager
                 {
                     System.out.print("["+(i+1)+"]"+"\t|\t");
                     flight.printFlight();
-                    // System.out.println("["+(i+1)+"]"+flight.getFlight().getFlightId()+" |\t"
-                    //                 +flight.getFlight().getAirline()+" |\t"
-                    //                 +flight.getFlight().getOrigin()+" |\t"
-                    //                 +flight.getFlight().getDestination()+" |\t"
-                    //                 +flight.getFlightDetail().getDepartureTime()+" |\t"
-                    //                 +flight.getFlightDetail().getArrivalTime());
+                   
                 }
                 else
                 {
                     flight.printFlight();
                     flight.printTransitFlight();
-                    // System.out.println("["+(i+1)+"]"+flight.getFlight().getFlightId()+" |\t"
-                    //                 +flight.getFlight().getAirline()+" |\t"
-                    //                 +flight.getFlight().getOrigin()+" |\t"
-                    //                 +flight.getFlight().getDestination()+" |\t"
-                    //                 +flight.getFlightDetail().getDepartureTime()+" |\t"
-                    //                 +flight.getFlightDetail().getArrivalTime());
-                    // System.out.println("You have to transit flight at "+flight.getFlight().getDestination()+" when arrival.And transit flight detail is");
-                    // System.out.println(flight.getTransitFlight().getFlightId()+"  "+flight.getTransitFlight().getAirline()+"  "
-                    //                     +flight.getTransitDetail().getDepartureTime()+"  "+flight.getTransitDetail().getArrivalTime());
+                    
                                     
                 }
                 

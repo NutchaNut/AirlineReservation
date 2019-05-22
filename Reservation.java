@@ -22,7 +22,7 @@ public class Reservation{
     
     public void addPassenger()
     {
-
+        Scanner in = new Scanner(System.in);
         String name;
         String lastName;
         String passportId;

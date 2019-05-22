@@ -78,7 +78,7 @@ public class Menu
                         System.out.println("Can't search your desire flight.");
                         break;
                     }
-
+                    System.out.println();
                     selectFlight = flightManager.selectFlight();
 
                     if(selectFlight == null)
