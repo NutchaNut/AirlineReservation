@@ -22,7 +22,7 @@ public class Reservation
      /*store selectedFlight that have flight detail */                                                        
      private OperateFlight selectedFlight;
      /*store list of passenger */                                                        
-     private ArrayList<Passenger> passengers;
+     private ArrayList<Passenger> passengers = new ArrayList<Passenger>();
      /*store totalPrice */                                                        
      private int totalPrice;
  
@@ -59,7 +59,6 @@ public class Reservation
             System.out.println("Passenger : " + i);
 
             Scanner str = new Scanner(System.in);
-            str.nextLine();
 
             System.out.print("Name : ");                                                            
             name = str.nextLine();

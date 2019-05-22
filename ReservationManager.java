@@ -16,7 +16,7 @@ import java.util.List;
 public class ReservationManager
 {
     /*store all reservation */                                                        
-    private ArrayList<Reservation> allReservations;
+    private ArrayList<Reservation> allReservations = new ArrayList<Reservation>() ;
 
      /*
      * searchById method use for search reservation by id
@@ -61,7 +61,6 @@ public class ReservationManager
                 System.out.println("---------------------------------------------------------");
                 System.out.println("Do you want to cancel this reservation?[y/n] :");
                 String ans = in.nextLine();                                                             
-                in.close();
                 if(ans.equals("y"))                                                                     
                 {
                     /**delete reservation */

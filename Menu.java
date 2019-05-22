@@ -134,7 +134,7 @@ public class Menu
                 case 2 : 
                     System.out.println("----------- Search Reservation -----------"); 
                     /**get input reservation id */                         
-                    System.out.println("Enter Reservation id : ");                                              
+                    System.out.print("Enter Reservation id : ");                                              
                     id = ch.nextLine();              
                     /**search and show reservation */                                   
                     reservationManager.showReservation(id);                                                         
@@ -143,7 +143,7 @@ public class Menu
                 case 3 :                                                                
                     System.out.println("----------- Cancl Reservation -----------");   
                     /*get input reservation id*/                      
-                    System.out.println("Enter Reservation id : ");                                             
+                    System.out.print("Enter Reservation id : ");                                             
                     id = ch.nextLine();
                     /**search and cancel reservation */
                     boolean cancel = reservationManager.cancelReservation(id);                                      
