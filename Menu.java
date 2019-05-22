@@ -1,3 +1,11 @@
+/**
+ * Menu
+ * 
+ *      this class is keeping the main function
+ *      and can choose the menu to operate with system functional.
+ * 
+ *      Created by Nutcha Suwannayik (Nut) ID 59070501021
+ */
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
